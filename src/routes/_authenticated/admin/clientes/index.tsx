@@ -148,7 +148,7 @@ function NovoClienteDialog({
               <Input placeholder="00.000.000/0000-00" {...form.register("cnpj")} />
             </div>
           </div>
-          <div className="flex items-start gap-2 rounded-lg border border-border bg-muted/30 p-3">
+          <div className="flex items-start gap-2 rounded-lg border border-border/50 bg-muted/30 p-3">
             <Checkbox
               id="gerar-portal"
               checked={gerarAcesso}
@@ -222,7 +222,7 @@ function ClientesAdminPage() {
   ];
 
   return (
-    <div className="px-6 py-6 space-y-6">
+    <div className="px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto space-y-6">
       {/* Header */}
       <div className="flex items-start justify-between gap-4 animate-fade-up">
         <div>
@@ -240,7 +240,7 @@ function ClientesAdminPage() {
         {kpiCards.map((kpi, i) => (
           <div
             key={kpi.rank}
-            className="card-lift animate-fade-up rounded-2xl border border-border bg-card px-5 pt-5 pb-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)] flex flex-col"
+            className="card-lift animate-fade-up rounded-2xl border border-border/50 bg-card px-5 pt-5 pb-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)] flex flex-col"
             style={{ animationDelay: i * 75 + "ms" }}
           >
             <span className="text-[9px] font-black tracking-[0.16em] text-muted-foreground/40 mb-4">
@@ -259,7 +259,7 @@ function ClientesAdminPage() {
 
       {/* Filters */}
       <div
-        className="rounded-2xl border border-border bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)] animate-fade-up"
+        className="rounded-2xl border border-border/50 bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)] animate-fade-up"
         style={{ animationDelay: "300ms" }}
       >
         <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
@@ -295,7 +295,7 @@ function ClientesAdminPage() {
 
       {/* Client List */}
       <div
-        className="rounded-2xl border border-border bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)] animate-fade-up"
+        className="rounded-2xl border border-border/50 bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)] animate-fade-up"
         style={{ animationDelay: "375ms" }}
       >
         <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">
@@ -319,7 +319,7 @@ function ClientesAdminPage() {
             }
           />
         ) : (
-          <div className="divide-y divide-border rounded-xl border border-border overflow-hidden">
+          <div className="divide-y divide-border/30 rounded-2xl border border-border/50 overflow-hidden">
             {filtered.map((c, i) => (
               <Link
                 key={c.id}

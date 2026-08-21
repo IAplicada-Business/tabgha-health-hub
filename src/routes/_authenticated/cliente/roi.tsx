@@ -219,7 +219,7 @@ function RoiPage() {
   };
 
   return (
-    <div className="space-y-6 px-6 py-6">
+    <div className="space-y-6 px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
       <div className="animate-fade-up flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
@@ -228,7 +228,7 @@ function RoiPage() {
           <h1 className="mt-0.5 text-xl font-bold tracking-tight">{pageTitle[tab]}</h1>
         </div>
         {tab !== "marketing" ? (
-          <div className="flex gap-1 rounded-xl border border-border bg-secondary/40 p-1">
+          <div className="flex gap-1 rounded-xl border border-border/50 bg-secondary/40 p-1">
             {PERIODOS.map((p) => (
               <button
                 key={p.days}
@@ -272,7 +272,7 @@ function RoiPage() {
                 {kpis.map(({ rank, label, value, badge }, i) => (
                   <div
                     key={label}
-                    className="card-lift animate-fade-up flex flex-col rounded-2xl border border-border bg-card px-5 pb-4 pt-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
+                    className="card-lift animate-fade-up flex flex-col rounded-2xl border border-border/50 bg-card px-5 pb-4 pt-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
                     style={{ animationDelay: `${i * 75}ms` }}
                   >
                     <span className="mb-4 text-[9px] font-black tracking-[0.16em] text-muted-foreground/40">
@@ -452,7 +452,7 @@ function RoiPage() {
                         ))}
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-border">
+                    <tbody className="divide-y divide-border/30">
                       {metricas.slice(0, 5).map((m, idx) => {
                         const rowCaq =
                           Number(m.leads) > 0 ? Number(m.investimento) / Number(m.leads) : null;
@@ -496,7 +496,7 @@ function RoiPage() {
           ) : null}
 
           {tab === "oportunidades" ? (
-            <div className="space-y-4">
+            <div className="space-y-5">
               <StoryBanner
                 title={`${leadsCrm} oportunidades no funil`}
                 body={`${convertidos} já viraram paciente e ${perdidos} foram perdidas. Use o funil para ver onde a equipe deve atacar.`}
@@ -522,7 +522,7 @@ function RoiPage() {
           ) : null}
 
           {tab === "campanhas" ? (
-            <div className="space-y-4">
+            <div className="space-y-5">
               <InsightStack items={campaignInsights} />
               <div className="grid gap-4 lg:grid-cols-2">
                 <Panel title="Budget por campanha" tone="soft">
@@ -539,7 +539,7 @@ function RoiPage() {
                   />
                 </Panel>
               </div>
-              <div className="overflow-hidden rounded-2xl border border-border bg-card">
+              <div className="overflow-hidden rounded-2xl border border-border/50 bg-card">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="bg-secondary/50 text-[10px] uppercase tracking-wide text-muted-foreground">
@@ -549,7 +549,7 @@ function RoiPage() {
                       <th className="px-4 py-2.5 text-right">CAQ</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-border">
+                  <tbody className="divide-y divide-border/30">
                     {byCampanha.map((row) => (
                       <tr key={row.campanha} className="hover:bg-secondary/30">
                         <td className="px-4 py-3 font-medium">{row.campanha}</td>

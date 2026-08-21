@@ -145,7 +145,7 @@ function ConteudoCard({ item, onMove }: { item: Conteudo; onMove: (id: string, s
     : null;
 
   return (
-    <div className="card-lift animate-fade-up rounded-xl border border-border bg-card p-3.5 space-y-2.5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
+    <div className="card-lift animate-fade-up rounded-2xl border border-border/50 bg-card p-3.5 space-y-2.5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
       <p className="text-[12.5px] font-semibold leading-snug">{item.titulo ?? "(sem título)"}</p>
       <p className="text-[11px] text-muted-foreground">{item.clientes?.nome ?? "—"}</p>
       <div className="flex flex-wrap gap-1">
@@ -162,7 +162,7 @@ function ConteudoCard({ item, onMove }: { item: Conteudo; onMove: (id: string, s
       <select
         value=""
         onChange={(e) => { if (e.target.value) onMove(item.id, e.target.value); }}
-        className="w-full rounded-lg border border-border bg-background px-2 py-1 text-[11px] text-muted-foreground cursor-pointer"
+        className="w-full rounded-lg border border-border/50 bg-background px-2 py-1 text-[11px] text-muted-foreground cursor-pointer"
       >
         <option value="">Mover para…</option>
         {nextStatuses.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
@@ -222,7 +222,7 @@ function EstrategiaPage() {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-6 py-4">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/50 px-6 py-4">
         <div>
           <span className="inline-flex items-center rounded-full bg-violet-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-violet-700 mb-1.5">
             Estratégia
@@ -244,7 +244,7 @@ function EstrategiaPage() {
         ].map((kpi) => (
           <div
             key={kpi.rank}
-            className="card-lift animate-fade-up rounded-2xl border border-border bg-card px-5 pt-5 pb-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)] flex flex-col"
+            className="card-lift animate-fade-up rounded-2xl border border-border/50 bg-card px-5 pt-5 pb-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)] flex flex-col"
             style={{ animationDelay: kpi.delay + "ms" }}
           >
             <span className="text-[9px] font-black tracking-[0.16em] text-muted-foreground/40 mb-4">{kpi.rank}</span>
@@ -258,7 +258,7 @@ function EstrategiaPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap items-center gap-2 px-6 py-3 border-b border-border bg-secondary/20">
+      <div className="flex flex-wrap items-center gap-2 px-6 py-3 border-b border-border/50 bg-secondary/30">
         <div className="relative">
           <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
           <Input
@@ -302,11 +302,11 @@ function EstrategiaPage() {
               return (
                 <div
                   key={col.key}
-                  className="animate-fade-up flex-1 min-w-[160px] flex flex-col rounded-2xl border border-border bg-card shadow-[0_1px_3px_rgba(15,27,53,0.04)] overflow-hidden"
+                  className="animate-fade-up flex-1 min-w-[160px] flex flex-col rounded-2xl border border-border/50 bg-card shadow-[0_1px_3px_rgba(15,27,53,0.04)] overflow-hidden"
                   style={{ animationDelay: colIdx * 50 + "ms" }}
                 >
                   {/* Column header */}
-                  <div className="px-3.5 pt-3.5 pb-3 border-b border-border">
+                  <div className="px-3.5 pt-3.5 pb-3 border-b border-border/50">
                     <div className="flex items-center justify-between">
                       <span className={`rounded-full px-2.5 py-0.5 text-[10.5px] font-semibold ${col.color}`}>
                         {col.label}
@@ -322,7 +322,7 @@ function EstrategiaPage() {
                   {/* Cards */}
                   <div className="flex flex-col gap-2 overflow-y-auto flex-1 p-2.5">
                     {cards.length === 0 ? (
-                      <div className="rounded-xl border border-dashed border-border py-6 text-center text-[11px] text-muted-foreground/60">
+                      <div className="rounded-2xl border border-dashed border-border/50 py-6 text-center text-[11px] text-muted-foreground/60">
                         vazio
                       </div>
                     ) : (

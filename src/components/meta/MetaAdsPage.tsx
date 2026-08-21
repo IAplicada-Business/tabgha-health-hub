@@ -332,7 +332,7 @@ export function MetaAdsPage({
 
   if (isAdmin && !fixedClienteId && clientesOptions.length === 0) {
     return (
-      <div className="rounded-2xl border border-border bg-card p-5">
+      <div className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-5">
         <p className="text-sm text-muted-foreground">
           Nenhum cliente cadastrado. Crie um cliente e conecte a Meta BM primeiro.
         </p>
@@ -424,7 +424,7 @@ export function MetaAdsPage({
             type="button"
             disabled={!activeClienteId || syncMutation.isPending}
             onClick={() => syncMutation.mutate()}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground hover:bg-secondary/60 disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-border/50 bg-card px-3 py-2 text-xs font-semibold text-foreground hover:bg-secondary/60 disabled:opacity-50"
           >
             {syncMutation.isPending ? (
               <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -447,7 +447,7 @@ export function MetaAdsPage({
       ) : null}
 
       {!activeClienteId ? (
-        <div className="rounded-2xl border border-border bg-card p-5">
+        <div className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-5">
           <p className="text-sm text-muted-foreground">Selecione um cliente para ver os KPIs.</p>
         </div>
       ) : dataQuery.isLoading ? (
@@ -457,7 +457,7 @@ export function MetaAdsPage({
           ))}
         </div>
       ) : dataQuery.isError ? (
-        <div className="rounded-2xl border border-destructive/30 bg-destructive/5 p-5">
+        <div className="rounded-2xl border border-destructive/30 bg-destructive/5 backdrop-blur-sm p-5">
           <p className="text-sm text-destructive">{(dataQuery.error as Error).message}</p>
         </div>
       ) : (
@@ -466,7 +466,7 @@ export function MetaAdsPage({
             {cards.map((card, i) => (
               <div
                 key={card.label}
-                className="animate-fade-up rounded-2xl border border-border bg-card px-5 pb-4 pt-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
+                className="animate-fade-up rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm px-5 pb-4 pt-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
                 style={{ animationDelay: `${i * 60}ms` }}
               >
                 <p className="text-[10.5px] font-semibold uppercase tracking-wide text-muted-foreground">

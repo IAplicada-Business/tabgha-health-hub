@@ -91,7 +91,7 @@ function ChatBubble({
           "max-w-[80%] rounded-2xl px-3 py-2 text-sm shadow-[0_1px_3px_rgba(15,27,53,0.04)]",
           outbound && senderType === "human" && "bg-emerald-600 text-white",
           outbound && senderType !== "human" && "bg-sky-500/10 text-sky-900 border border-sky-100",
-          !outbound && "border border-border bg-card text-foreground",
+          !outbound && "border border-border/50 bg-card text-foreground",
         )}
       >
         {body}
@@ -185,15 +185,15 @@ export function AtendimentoPage({ isAdmin = false }: AtendimentoPageProps) {
   }
 
   return (
-    <div className="flex h-[calc(100vh-7rem)] overflow-hidden rounded-2xl border border-border bg-card shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
+    <div className="flex h-[calc(100vh-7rem)] overflow-hidden rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
       {/* Conversation list sidebar */}
       <aside
         className={cn(
-          "flex w-full flex-col border-r border-border md:w-80",
+          "flex w-full flex-col border-r border-border/50 md:w-80",
           mobilePane !== "list" && "hidden md:flex",
         )}
       >
-        <div className="space-y-2 border-b border-border p-3">
+        <div className="space-y-2 border-b border-border/50 p-3">
           {isAdmin && (
             <select
               value={clienteFilter ?? ""}
@@ -232,7 +232,7 @@ export function AtendimentoPage({ isAdmin = false }: AtendimentoPageProps) {
           />
         </div>
 
-        <div className="flex-1 overflow-y-auto divide-y divide-border">
+        <div className="flex-1 overflow-y-auto divide-y divide-border/50">
           {isLoading ? (
             <div className="space-y-2 p-3">
               <Skeleton className="h-16 w-full rounded-xl" />
@@ -290,7 +290,7 @@ export function AtendimentoPage({ isAdmin = false }: AtendimentoPageProps) {
           <>
             {/* Chat header */}
             <div
-              className="flex items-center justify-between border-b border-border px-5 py-3"
+              className="flex items-center justify-between border-b border-border/50 px-5 py-3"
               style={{ background: "linear-gradient(135deg, #0B1B3E 0%, #0F2550 100%)" }}
             >
               <div>
@@ -360,7 +360,7 @@ export function AtendimentoPage({ isAdmin = false }: AtendimentoPageProps) {
             </div>
 
             {/* Message input */}
-            <div className="border-t border-border bg-card p-3">
+            <div className="border-t border-border/50 bg-card p-3">
               <Textarea
                 value={message}
                 onChange={(event) => setMessage(event.target.value)}
@@ -391,7 +391,7 @@ export function AtendimentoPage({ isAdmin = false }: AtendimentoPageProps) {
       {/* Lead info panel */}
       <aside
         className={cn(
-          "hidden w-72 border-l border-border bg-card md:block",
+          "hidden w-72 border-l border-border/50 bg-card md:block",
           mobilePane === "info" && "block md:block",
         )}
       >
@@ -401,7 +401,7 @@ export function AtendimentoPage({ isAdmin = false }: AtendimentoPageProps) {
               Informações do lead
             </p>
 
-            <div className="divide-y divide-border overflow-hidden rounded-xl border border-border">
+            <div className="divide-y divide-border/50 overflow-hidden rounded-2xl border border-border/50">
               <div className="px-4 py-3">
                 <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
                   Nome
@@ -464,7 +464,7 @@ export function AtendimentoPage({ isAdmin = false }: AtendimentoPageProps) {
               ) : null}
             </div>
 
-            <div className="rounded-xl border border-border bg-secondary/30 px-4 py-3">
+            <div className="rounded-2xl border border-border/50 bg-secondary/30 px-4 py-3">
               <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                 Status atual
               </p>

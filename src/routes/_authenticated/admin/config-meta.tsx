@@ -334,7 +334,7 @@ function ConfigMetaPage() {
   }
 
   return (
-    <div className="w-full min-h-full space-y-6 px-6 py-6 lg:px-8">
+    <div className="w-full min-h-full space-y-6 px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
       <header className="w-full animate-fade-up">
         <span className="eyebrow-pill">Aquisição</span>
         <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
@@ -345,7 +345,7 @@ function ConfigMetaPage() {
         </p>
       </header>
 
-      <section className="w-full rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
+      <section className="w-full rounded-2xl border border-border/50 bg-card p-6 sm:p-8">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
@@ -368,8 +368,8 @@ function ConfigMetaPage() {
         ) : conexoes.length === 0 ? (
           <p className="py-6 text-sm text-muted-foreground">Nenhum cliente cadastrado.</p>
         ) : (
-          <div className="overflow-hidden rounded-xl border border-border">
-            <div className="hidden grid-cols-[minmax(0,1.4fr)_minmax(0,1.2fr)_minmax(0,0.9fr)_auto] gap-3 border-b border-border bg-secondary/40 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground sm:grid">
+          <div className="overflow-hidden rounded-2xl border border-border/50">
+            <div className="hidden grid-cols-[minmax(0,1.4fr)_minmax(0,1.2fr)_minmax(0,0.9fr)_auto] gap-3 border-b border-border/50 bg-secondary/40 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-muted-foreground sm:grid">
               <span>Cliente</span>
               <span>Página Meta</span>
               <span>Ad Account</span>
@@ -420,7 +420,7 @@ function ConfigMetaPage() {
                           Conectado
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary px-2.5 py-1 text-[11px] font-semibold text-muted-foreground">
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-border/50 bg-secondary px-2.5 py-1 text-[11px] font-semibold text-muted-foreground">
                           <Link2Off className="h-3.5 w-3.5" />
                           Pendente
                         </span>
@@ -434,7 +434,7 @@ function ConfigMetaPage() {
         )}
       </section>
 
-      <section className="w-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+      <section className="w-full overflow-hidden rounded-2xl border border-border/50 bg-card">
         <button
           type="button"
           onClick={() => setPainelAberto((v) => !v)}
@@ -465,7 +465,7 @@ function ConfigMetaPage() {
               Conectado
             </span>
           ) : (
-            <span className="hidden shrink-0 rounded-full border border-border bg-secondary px-2.5 py-1 text-[11px] font-semibold text-muted-foreground sm:inline-flex">
+            <span className="hidden shrink-0 rounded-full border border-border/50 bg-secondary px-2.5 py-1 text-[11px] font-semibold text-muted-foreground sm:inline-flex">
               Pendente
             </span>
           )}
@@ -478,7 +478,7 @@ function ConfigMetaPage() {
         </button>
 
         {painelAberto ? (
-          <div className="space-y-5 border-t border-border px-5 py-5 sm:px-6">
+          <div className="space-y-5 border-t border-border/50 px-5 py-5 sm:px-6">
             <div className="space-y-2">
               <Label htmlFor="cliente">Cliente</Label>
               {loadingClientes ? (
@@ -610,7 +610,7 @@ function ConfigMetaPage() {
               </div>
             ) : (
               <div className="space-y-4">
-                <div className="rounded-xl border border-dashed border-border bg-secondary/30 p-5 text-sm text-muted-foreground">
+                <div className="rounded-2xl border border-dashed border-border/50 bg-secondary/30 p-5 text-sm text-muted-foreground">
                   <Link2Off className="mb-2 h-5 w-5" />
                   Nenhuma conexão Meta para este cliente. Clique em conectar e autorize a BM da
                   clínica.
@@ -634,7 +634,7 @@ function ConfigMetaPage() {
         ) : null}
       </section>
 
-      <section className="w-full overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
+      <section className="w-full overflow-hidden rounded-2xl border border-border/50 bg-card">
         <button
           type="button"
           onClick={() => setSetupAberto((v) => !v)}

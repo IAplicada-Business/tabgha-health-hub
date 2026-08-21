@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2, BarChart3, Target, Package } from "lucide-react";
 import { differenceInDays, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
@@ -177,12 +177,12 @@ function DashboardTabghaPage() {
   });
 
   return (
-    <div className="space-y-4 px-6 py-6">
-      <header className="animate-fade-up flex flex-wrap items-start justify-between gap-3">
+    <div className="space-y-5 px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
+      <header className="animate-fade-up flex flex-wrap items-start justify-between gap-4">
         <div>
           <span className="eyebrow-pill">Visão Tabgha</span>
-          <h1 className="mt-2 text-2xl font-extrabold tracking-tight">Dashboard Tabgha</h1>
-          <p className="mt-0.5 max-w-2xl text-xs text-muted-foreground">
+          <h1 className="mt-3">Dashboard Tabgha</h1>
+          <p className="mt-1 max-w-2xl text-sm text-muted-foreground/70">
             Crescimento da agência e gestão da carteira. Mídia e CAQ ficam em ROI e Marketing Pago.
           </p>
         </div>
@@ -219,7 +219,8 @@ function DashboardTabghaPage() {
             hint: "ativo + onboarding",
             value: data?.carteira ?? 0,
             accent: "text-primary",
-            bar: "bg-primary",
+            barFrom: "from-primary",
+            barTo: "to-brand-sky",
           },
           {
             rank: "02",
@@ -227,7 +228,8 @@ function DashboardTabghaPage() {
             hint: "ainda não ativados",
             value: data?.onboarding ?? 0,
             accent: "text-sky-700",
-            bar: "bg-sky-500",
+            barFrom: "from-sky-400",
+            barTo: "to-sky-500",
           },
           {
             rank: "03",
@@ -235,7 +237,8 @@ function DashboardTabghaPage() {
             hint: "período filtrado",
             value: data?.leadsPeriodo ?? 0,
             accent: "text-foreground",
-            bar: "bg-slate-400",
+            barFrom: "from-slate-300",
+            barTo: "to-slate-400",
           },
           {
             rank: "04",
@@ -243,29 +246,34 @@ function DashboardTabghaPage() {
             hint: "pendente / revisão",
             value: data?.entregasPendentes ?? 0,
             accent: "text-amber-700",
-            bar: "bg-amber-500",
+            barFrom: "from-amber-300",
+            barTo: "to-amber-500",
           },
         ].map((card, i) => (
           <div
             key={card.rank}
-            className="card-lift animate-fade-up flex flex-col rounded-2xl border border-border bg-card px-5 pb-4 pt-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
+            className={cn(
+              "card-lift animate-fade-up group relative flex flex-col rounded-2xl border border-border/50 bg-card px-5 pb-4 pt-5 overflow-hidden backdrop-blur-sm",
+              "shadow-[0_1px_3px_oklch(0.14_0.044_264/4%),inset_0_1px_0_oklch(1_0_0/50%)]",
+            )}
             style={{ animationDelay: `${i * 70}ms` }}
           >
-            <span className="mb-4 text-[9px] font-black tracking-[0.16em] text-muted-foreground/40">
+            <div className="pointer-events-none absolute -right-4 -top-4 h-16 w-16 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150" />
+            <span className="relative mb-4 text-[9px] font-black tracking-[0.16em] text-muted-foreground/30">
               {card.rank}
             </span>
-            <p className={cn("text-[2rem] font-black leading-none tracking-tighter", card.accent)}>
+            <p className={cn("relative text-[2rem] font-bold leading-none tracking-tighter", card.accent)}>
               {isLoading ? (
-                <span className="inline-block h-9 w-16 animate-pulse rounded-lg bg-secondary align-middle" />
+                <span className="inline-block h-9 w-16 animate-pulse rounded-xl bg-secondary align-middle" />
               ) : (
                 card.value
               )}
             </p>
-            <p className="mt-2 text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground">
+            <p className="relative mt-2.5 text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground">
               {card.label}
             </p>
-            <p className="mt-1 text-[10px] text-muted-foreground/70">{card.hint}</p>
-            <div className={cn("mt-4 h-0.5 w-full rounded-full", card.bar)} />
+            <p className="relative mt-1 text-[10px] text-muted-foreground/60">{card.hint}</p>
+            <div className={cn("relative mt-4 h-1 w-full rounded-full bg-gradient-to-r", card.barFrom, card.barTo)} />
           </div>
         ))}
       </div>
@@ -280,18 +288,18 @@ function DashboardTabghaPage() {
         ]}
       />
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_280px]">
-        <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
-          <div className="flex items-center justify-between border-b border-border px-6 py-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_300px]">
+        <div className="overflow-hidden rounded-2xl border border-border/50 bg-card backdrop-blur-sm shadow-[0_1px_3px_oklch(0.14_0.044_264/4%),inset_0_1px_0_oklch(1_0_0/50%)]">
+          <div className="flex items-center justify-between border-b border-border/40 px-6 py-4">
             <div>
               <p className="text-sm font-bold">Saúde da carteira</p>
-              <p className="text-[11px] text-muted-foreground">
+              <p className="text-[11px] text-muted-foreground/70">
                 Quem precisa de gestão — não é ranking de mídia
               </p>
             </div>
             <Link
               to="/admin/clientes"
-              className="flex items-center gap-1 text-[11px] font-semibold text-primary hover:underline"
+              className="flex items-center gap-1 text-[11px] font-semibold text-primary hover:underline transition-colors"
             >
               Ver clientes <ArrowRight className="h-3 w-3" />
             </Link>
@@ -299,14 +307,14 @@ function DashboardTabghaPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border bg-secondary/20 text-[9.5px] font-black uppercase tracking-[0.1em] text-muted-foreground/60">
-                  <th className="px-6 py-2.5 text-left">Cliente</th>
-                  <th className="px-4 py-2.5 text-left">Status</th>
-                  <th className="px-4 py-2.5 text-right">Leads/filtro</th>
-                  <th className="px-4 py-2.5 text-left">Último lead</th>
+                <tr className="border-b border-border/40 bg-secondary/30 text-[9.5px] font-bold uppercase tracking-[0.1em] text-muted-foreground/50">
+                  <th className="px-6 py-3 text-left">Cliente</th>
+                  <th className="px-4 py-3 text-left">Status</th>
+                  <th className="px-4 py-3 text-right">Leads/filtro</th>
+                  <th className="px-4 py-3 text-left">Último lead</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border">
+              <tbody className="divide-y divide-border/30">
                 {isLoading ? (
                   <tr>
                     <td colSpan={4} className="px-6 py-10 text-center text-muted-foreground">
@@ -326,31 +334,31 @@ function DashboardTabghaPage() {
                       <tr
                         key={c.id}
                         className={cn(
-                          "transition-colors hover:bg-secondary/30",
-                          c.atencao && "bg-amber-50/40",
+                          "transition-colors duration-150 hover:bg-primary/[0.03]",
+                          c.atencao && "bg-amber-50/30",
                         )}
                       >
                         <td className="px-6 py-3.5">
                           <Link
                             to={"/admin/clientes/$id" as never}
                             params={{ id: c.id } as never}
-                            className="text-[13px] font-semibold hover:text-primary"
+                            className="text-[13px] font-semibold hover:text-primary transition-colors"
                           >
                             {c.nome}
                           </Link>
-                          <p className="text-[10.5px] text-muted-foreground">
+                          <p className="text-[10.5px] text-muted-foreground/60">
                             {c.especialidade ?? "—"}
                           </p>
                         </td>
                         <td className="px-4 py-3.5">
-                          <div className="flex items-center gap-1.5">
-                            <span className={cn("h-1.5 w-1.5 shrink-0 rounded-full", st.dot)} />
+                          <div className="flex items-center gap-2">
+                            <span className={cn("h-2 w-2 shrink-0 rounded-full ring-2 ring-offset-1 ring-offset-card", st.dot, st.dot.replace("bg-", "ring-").replace("-400", "-200"))} />
                             <span className={cn("text-[11px] font-semibold", st.text)}>
                               {st.label}
                             </span>
                           </div>
                         </td>
-                        <td className="px-4 py-3.5 text-right text-base font-extrabold tabular-nums text-sky-800">
+                        <td className="px-4 py-3.5 text-right text-base font-bold tabular-nums text-sky-800">
                           {c.mes}
                         </td>
                         <td
@@ -373,38 +381,41 @@ function DashboardTabghaPage() {
         </div>
 
         <Panel title="Pipeline editorial" subtitle={`${data?.stageTotal ?? 0} em produção`}>
-          <div className="space-y-4">
+          <div className="space-y-5">
             {[
               {
                 key: "briefing",
                 label: "Briefing",
                 count: data?.stageCounts.briefing ?? 0,
-                color: "bg-slate-400",
+                colorFrom: "from-slate-300",
+                colorTo: "to-slate-400",
               },
               {
                 key: "roteiro",
                 label: "Roteiro",
                 count: data?.stageCounts.roteiro ?? 0,
-                color: "bg-primary",
+                colorFrom: "from-primary",
+                colorTo: "to-brand-sky",
               },
               {
                 key: "producao",
                 label: "Produção",
                 count: data?.stageCounts.producao ?? 0,
-                color: "bg-amber-400",
+                colorFrom: "from-amber-300",
+                colorTo: "to-amber-500",
               },
-            ].map(({ key, label, count, color }) => {
+            ].map(({ key, label, count, colorFrom, colorTo }) => {
               const total = data?.stageTotal ?? 0;
               const pct = total > 0 ? Math.round((count / total) * 100) : 0;
               return (
                 <div key={key}>
-                  <div className="mb-1.5 flex items-center justify-between">
+                  <div className="mb-2 flex items-center justify-between">
                     <span className="text-xs font-semibold">{label}</span>
-                    <span className="text-xs font-bold tabular-nums">{count}</span>
+                    <span className="text-xs font-bold tabular-nums text-muted-foreground">{count}</span>
                   </div>
-                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-secondary/50">
                     <div
-                      className={cn("h-full rounded-full transition-all duration-700", color)}
+                      className={cn("h-full rounded-full bg-gradient-to-r transition-all duration-700", colorFrom, colorTo)}
                       style={{
                         width: total === 0 ? "100%" : `${pct}%`,
                         opacity: total === 0 ? 0.2 : 1,
@@ -416,7 +427,7 @@ function DashboardTabghaPage() {
             })}
             <Link
               to="/admin/estrategia"
-              className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:underline"
+              className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:underline transition-colors"
             >
               Abrir estratégia <ArrowRight className="h-3 w-3" />
             </Link>
@@ -430,30 +441,42 @@ function DashboardTabghaPage() {
             title: "Dashboard Clientes",
             body: "Resumo por clínica: leads CRM, gap Ads e próximos passos.",
             to: "/admin/dashboard-clientes",
+            icon: BarChart3,
           },
           {
             title: "ROI da operação",
             body: "Investimento, CAQ e retorno — sem misturar com gestão da carteira.",
             to: "/admin/roi" as const,
             search: { tab: "operacao" as const },
+            icon: Target,
           },
           {
             title: "Funil de leads",
             body: "Mover oportunidades no pipeline de cada cliente.",
             to: "/admin/leads" as const,
             search: undefined,
+            icon: Package,
           },
         ].map((card) => (
           <Link
             key={card.to}
             to={card.to as never}
             search={(card.search ?? {}) as never}
-            className="rounded-2xl border border-border bg-card p-4 shadow-sm transition hover:border-primary/30 hover:shadow-md"
+            className={cn(
+              "group rounded-2xl border border-border/50 bg-card p-5 backdrop-blur-sm",
+              "shadow-[0_1px_3px_oklch(0.14_0.044_264/4%),inset_0_1px_0_oklch(1_0_0/50%)]",
+              "transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_oklch(0.14_0.044_264/8%)] hover:border-primary/15",
+            )}
           >
-            <p className="text-sm font-bold">{card.title}</p>
-            <p className="mt-1 text-[11px] text-muted-foreground">{card.body}</p>
-            <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-semibold text-sky-700">
-              Abrir <ArrowRight className="h-3 w-3" />
+            <div className="flex items-center gap-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 to-brand-sky/8 ring-1 ring-primary/8 transition-colors group-hover:from-primary/15 group-hover:to-brand-sky/12">
+                <card.icon className="h-4 w-4 text-primary" />
+              </div>
+              <p className="text-sm font-bold">{card.title}</p>
+            </div>
+            <p className="mt-2.5 text-[11px] text-muted-foreground/70 leading-relaxed">{card.body}</p>
+            <span className="mt-3 inline-flex items-center gap-1 text-[11px] font-semibold text-primary transition-colors group-hover:text-accent-foreground">
+              Abrir <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
             </span>
           </Link>
         ))}

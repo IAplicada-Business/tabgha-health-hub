@@ -279,8 +279,8 @@ function DashboardClientesPage() {
   const adsCrmGap = insightFromGap(data?.leadsAds ?? 0, data?.leadsMeta ?? 0);
 
   return (
-    <div className="space-y-4 px-6 py-6">
-      <header className="animate-fade-up flex flex-wrap items-start justify-between gap-3">
+    <div className="space-y-5 px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
+      <header className="animate-fade-up flex flex-wrap items-start justify-between gap-4">
         <div>
           <span className="eyebrow-pill">Visão Clientes</span>
           <h1 className="mt-2 text-2xl font-extrabold tracking-tight">Dashboard Clientes</h1>
@@ -356,7 +356,7 @@ function DashboardClientesPage() {
             ].map((card, i) => (
               <div
                 key={card.rank}
-                className="card-lift animate-fade-up flex flex-col rounded-2xl border border-border bg-card px-5 pb-4 pt-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
+                className="card-lift animate-fade-up flex flex-col rounded-2xl border border-border/50 bg-card px-5 pb-4 pt-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
                 style={{ animationDelay: `${i * 70}ms` }}
               >
                 <span className="mb-4 text-[9px] font-black tracking-[0.16em] text-muted-foreground/40">
@@ -450,7 +450,7 @@ function DashboardClientesPage() {
             </Panel>
           </div>
 
-          <div className="animate-fade-up overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-slate-50 via-white to-sky-50/70 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
+          <div className="animate-fade-up overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-slate-50 via-white to-sky-50/70 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
             <div className="flex items-start justify-between px-6 pb-2 pt-5">
               <div>
                 <p className="text-base font-bold text-foreground">Novos leads</p>
@@ -523,7 +523,7 @@ function DashboardClientesPage() {
       ) : null}
 
       {tab === "performance" ? (
-        <div className="space-y-4">
+        <div className="space-y-5">
           <InsightStack items={rankingInsights} />
           <div className="grid gap-4 lg:grid-cols-2">
             <Panel
@@ -562,8 +562,8 @@ function DashboardClientesPage() {
             </Panel>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-            <div className="flex items-center justify-between border-b border-border px-5 py-3.5">
+          <div className="overflow-hidden rounded-2xl border border-border/50 bg-card">
+            <div className="flex items-center justify-between border-b border-border/50 px-5 py-3.5">
               <p className="text-sm font-bold">Por clínica</p>
               <Link
                 to="/admin/roi"
@@ -586,7 +586,7 @@ function DashboardClientesPage() {
                     <th className="px-3 py-2.5 text-right">CAQ</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border">
+                <tbody className="divide-y divide-border/30">
                   {isLoading ? (
                     <tr>
                       <td colSpan={7} className="px-4 py-10 text-center">
@@ -648,7 +648,7 @@ function DashboardClientesPage() {
       ) : null}
 
       {tab === "oportunidades" ? (
-        <div className="space-y-4">
+        <div className="space-y-5">
           <StoryBanner
             title={`${data?.leadsPeriodo ?? 0} oportunidades no funil`}
             body={`${data?.convertidos ?? 0} convertidas · ${data?.perdidos ?? 0} perdidas · ${data?.leadsMeta ?? 0} vieram da Meta.`}
@@ -667,13 +667,13 @@ function DashboardClientesPage() {
             <Link
               to="/admin/leads"
               search={{ periodo: 30, canal: "", cliente: filters.clienteId ?? "", q: "" }}
-              className="inline-flex items-center gap-1 rounded-lg border border-border px-3 py-1.5 text-[11px] font-semibold hover:bg-secondary"
+              className="inline-flex items-center gap-1 rounded-lg border border-border/50 px-3 py-1.5 text-[11px] font-semibold hover:bg-secondary"
             >
               Abrir funil <ArrowRight className="h-3 w-3" />
             </Link>
             <Link
               to="/admin/config-meta"
-              className="rounded-lg border border-border px-3 py-1.5 text-[11px] font-semibold hover:bg-secondary"
+              className="rounded-lg border border-border/50 px-3 py-1.5 text-[11px] font-semibold hover:bg-secondary"
             >
               Importar leads Meta
             </Link>

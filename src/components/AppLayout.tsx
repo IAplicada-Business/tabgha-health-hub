@@ -29,6 +29,7 @@ import {
   X,
   ShieldCheck,
   Package,
+  Search,
 } from "lucide-react";
 
 type NavChild = {
@@ -56,7 +57,6 @@ function navChildActive(
     if (!pathname.startsWith(child.to + "/")) return false;
   }
   if (!child.search) {
-    // Exact match for dashboard root; other bare links match path only.
     if (child.to === "/admin/dashboard") return pathname === "/admin/dashboard";
     return true;
   }
@@ -243,8 +243,6 @@ const CLIENTE_NAV: NavGroup[] = [
   },
 ];
 
-// ── Client Picker ─────────────────────────────────────────────────────────────
-
 type ClientOption = { id: string; nome: string; especialidade: string | null };
 
 function ClientPicker({
@@ -290,10 +288,10 @@ function ClientPicker({
     <button
       onClick={handleOpen}
       className={cn(
-        "flex items-center gap-2 rounded-md text-[11px] font-medium text-sidebar-foreground/50 hover:text-sidebar-foreground transition-colors",
+        "flex items-center gap-2 rounded-xl text-[11px] font-medium text-sidebar-foreground/50 hover:text-sidebar-foreground transition-all duration-200",
         collapsed
           ? "h-8 w-8 justify-center hover:bg-sidebar-accent"
-          : "w-full px-2.5 py-2 hover:bg-sidebar-accent/60",
+          : "w-full px-3 py-2 hover:bg-sidebar-accent/60",
       )}
     >
       <Eye className="h-3.5 w-3.5 shrink-0" />
@@ -316,24 +314,27 @@ function ClientPicker({
 
       {open && (
         <div
-          className="absolute bottom-full left-0 right-0 mb-1 rounded-lg border border-sidebar-border bg-sidebar shadow-xl z-50 overflow-hidden"
+          className="absolute bottom-full left-0 right-0 mb-1 rounded-2xl border border-sidebar-border/60 bg-sidebar/95 backdrop-blur-xl shadow-xl z-50 overflow-hidden"
           style={{ minWidth: 200 }}
         >
-          <div className="border-b border-sidebar-border px-3 py-2">
-            <p className="text-[10.5px] font-semibold uppercase tracking-widest text-sidebar-foreground/40">
+          <div className="border-b border-sidebar-border/50 px-4 py-3">
+            <p className="text-[10px] font-semibold uppercase tracking-widest text-sidebar-foreground/40">
               Simular como cliente
             </p>
           </div>
-          <div className="px-2 pt-2 pb-1">
-            <input
-              autoFocus
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Buscar cliente…"
-              className="w-full rounded-md bg-sidebar-accent/40 px-2.5 py-1.5 text-xs text-sidebar-foreground placeholder:text-sidebar-foreground/30 outline-none border border-sidebar-border focus:border-sidebar-primary/50"
-            />
+          <div className="px-3 pt-3 pb-1">
+            <div className="relative">
+              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3 w-3 text-sidebar-foreground/30" />
+              <input
+                autoFocus
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Buscar cliente…"
+                className="w-full rounded-xl bg-sidebar-accent/30 pl-8 pr-3 py-2 text-xs text-sidebar-foreground placeholder:text-sidebar-foreground/30 outline-none border border-sidebar-border/40 focus:border-sidebar-primary/50 transition-colors"
+              />
+            </div>
           </div>
-          <div className="max-h-48 overflow-y-auto py-1">
+          <div className="max-h-48 overflow-y-auto py-1.5 px-1.5">
             {loading ? (
               <p className="px-3 py-4 text-center text-[11px] text-sidebar-foreground/40">
                 Carregando…
@@ -351,7 +352,7 @@ function ClientPicker({
                     setOpen(false);
                     setSearch("");
                   }}
-                  className="flex w-full flex-col px-3 py-2 text-left hover:bg-sidebar-accent/60 transition-colors"
+                  className="flex w-full flex-col rounded-lg px-3 py-2.5 text-left hover:bg-sidebar-accent/60 transition-colors"
                 >
                   <span className="text-[12px] font-medium text-sidebar-foreground">{c.nome}</span>
                   {c.especialidade && (
@@ -368,8 +369,6 @@ function ClientPicker({
     </div>
   );
 }
-
-// ── Sidebar Nav ───────────────────────────────────────────────────────────────
 
 function SidebarNav({
   groups,
@@ -435,33 +434,35 @@ function SidebarNav({
       {/* ── Logo ── */}
       <div
         className={cn(
-          "flex h-12 items-center border-b border-sidebar-border shrink-0",
-          collapsed ? "justify-center px-0" : "px-3.5",
+          "flex h-14 items-center border-b border-sidebar-border/40 shrink-0",
+          collapsed ? "justify-center px-0" : "px-4",
         )}
       >
         {!collapsed && (
           <img
             src="https://tabghamkt.com.br/wp-content/uploads/2025/05/logo_tabgha_health_mkt_caixa_alta-04-scaled-e1747895382243.png"
             alt="Tabgha Health Marketing"
-            className="h-6 w-auto brightness-0 invert"
+            className="h-6 w-auto brightness-0 invert opacity-90"
           />
         )}
         {collapsed && (
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-sidebar-primary/20">
-            <span className="text-[11px] font-bold text-sidebar-primary">T</span>
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-sidebar-primary/30 to-sidebar-primary/10">
+            <span className="text-[12px] font-bold text-sidebar-primary">T</span>
           </div>
         )}
       </div>
 
-      {/* ── Simulation badge (expanded sidebar only) ── */}
+      {/* ── Simulation badge ── */}
       {isSimulating && !collapsed && (
-        <div className="mx-2 mt-2 flex items-center gap-2 rounded-lg border border-amber-400/30 bg-amber-400/10 px-3 py-2">
-          <Eye className="h-3.5 w-3.5 shrink-0 text-amber-400" />
+        <div className="mx-3 mt-3 flex items-center gap-2.5 rounded-xl border border-amber-400/20 bg-amber-400/8 px-3 py-2.5">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-400/15">
+            <Eye className="h-3.5 w-3.5 text-amber-400" />
+          </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[9.5px] font-semibold uppercase tracking-widest text-amber-400/70">
+            <p className="text-[9px] font-semibold uppercase tracking-widest text-amber-400/60">
               Simulando
             </p>
-            <p className="text-[11.5px] font-semibold text-amber-300 truncate">
+            <p className="text-[11px] font-semibold text-amber-300 truncate">
               {simulatedClientNome}
             </p>
           </div>
@@ -469,7 +470,7 @@ function SidebarNav({
       )}
 
       {/* ── Nav groups ── */}
-      <nav className="flex-1 overflow-y-auto py-2">
+      <nav className="flex-1 overflow-y-auto py-3 px-2">
         {groups.map((g) => {
           const key = g.group;
           const isOpen = isGroupOpen(key);
@@ -482,37 +483,35 @@ function SidebarNav({
           const isAdminGroup = key === "Administração";
 
           return (
-            <div key={key} className={cn("mb-1", collapsed ? "px-1.5" : "")}>
-              {/* Group header */}
+            <div key={key} className={cn("mb-1.5", collapsed ? "px-0" : "")}>
               {!collapsed && (
                 <button
                   onClick={() => toggleGroup(key)}
                   className={cn(
-                    "flex w-[calc(100%-16px)] items-center justify-between mx-2 px-2.5 py-1.5 rounded-md border-0 bg-transparent cursor-pointer transition-colors",
-                    "text-[9.5px] font-semibold tracking-[0.14em] uppercase",
+                    "flex w-full items-center justify-between px-3 py-2 rounded-lg border-0 bg-transparent cursor-pointer transition-all duration-200",
+                    "text-[9px] font-semibold tracking-[0.14em] uppercase",
                     hasActive
                       ? "text-sidebar-primary"
                       : isAdminGroup
-                        ? "text-sidebar-foreground/50 hover:text-sidebar-foreground/70"
-                        : "text-sidebar-foreground/35 hover:text-sidebar-foreground/60",
+                        ? "text-sidebar-foreground/45 hover:text-sidebar-foreground/65"
+                        : "text-sidebar-foreground/30 hover:text-sidebar-foreground/55",
                   )}
                 >
                   <span className="flex items-center gap-1.5">
-                    {isAdminGroup && <ShieldCheck className="h-3 w-3 opacity-60" />}
+                    {isAdminGroup && <ShieldCheck className="h-3 w-3 opacity-50" />}
                     {key}
                   </span>
                   <ChevronRight
                     className={cn(
-                      "h-3 w-3 opacity-55 transition-transform duration-200",
+                      "h-2.5 w-2.5 opacity-40 transition-transform duration-200",
                       isOpen && "rotate-90",
                     )}
                   />
                 </button>
               )}
 
-              {/* Group items */}
               {(isOpen || collapsed) && (
-                <div className={collapsed ? "flex flex-col gap-0.5 py-0.5" : ""}>
+                <div className={collapsed ? "flex flex-col gap-0.5 py-0.5 items-center" : "space-y-0.5"}>
                   {g.items.map((it) => {
                     const childActive =
                       it.children?.some((c) => navChildActive(c, pathname, searchParams)) ?? false;
@@ -530,15 +529,13 @@ function SidebarNav({
                               to={it.to as any}
                               onClick={onNavigate}
                               className={cn(
-                                "flex h-8 w-8 items-center justify-center rounded-md transition-all duration-150 mx-auto",
+                                "flex h-9 w-9 items-center justify-center rounded-xl transition-all duration-200",
                                 active
-                                  ? "bg-sidebar-accent text-sidebar-primary shadow-[inset_2px_0_0_0_var(--color-sidebar-primary)]"
-                                  : "text-sidebar-foreground/50 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground",
+                                  ? "bg-gradient-to-br from-sidebar-primary/25 to-sidebar-primary/10 text-sidebar-primary shadow-[0_0_12px_oklch(0.530_0.170_261/15%)]"
+                                  : "text-sidebar-foreground/40 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground/80",
                               )}
                             >
-                              <Icon
-                                className={cn("h-4 w-4", active ? "opacity-100" : "opacity-60")}
-                              />
+                              <Icon className="h-4 w-4" />
                             </Link>
                           </TooltipTrigger>
                           <TooltipContent side="right" className="text-xs font-medium">
@@ -561,28 +558,28 @@ function SidebarNav({
                               }))
                             }
                             className={cn(
-                              "mx-2 mb-px flex w-[calc(100%-16px)] items-center gap-2.5 rounded-[7px] border-0 bg-transparent px-2.5 py-1.5 text-left text-[12.5px] transition-all duration-150",
+                              "flex w-full items-center gap-2.5 rounded-xl border-0 bg-transparent px-3 py-2 text-left text-[12.5px] transition-all duration-200",
                               active
-                                ? "bg-sidebar-accent/70 font-semibold text-sidebar-accent-foreground"
-                                : "text-sidebar-foreground/55 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground",
+                                ? "bg-sidebar-accent/60 font-semibold text-sidebar-accent-foreground"
+                                : "text-sidebar-foreground/50 hover:bg-sidebar-accent/40 hover:text-sidebar-foreground/80",
                             )}
                           >
-                            <Icon
-                              className={cn(
-                                "h-3.5 w-3.5 shrink-0",
-                                active ? "text-sidebar-primary opacity-100" : "opacity-50",
-                              )}
-                            />
+                            <div className={cn(
+                              "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-colors",
+                              active ? "bg-sidebar-primary/20" : "bg-sidebar-accent/30",
+                            )}>
+                              <Icon className={cn("h-3.5 w-3.5", active ? "text-sidebar-primary" : "opacity-50")} />
+                            </div>
                             <span className="flex-1">{it.label}</span>
                             <ChevronRight
                               className={cn(
-                                "h-3 w-3 opacity-55 transition-transform duration-200",
+                                "h-3 w-3 opacity-40 transition-transform duration-200",
                                 submenuOpen && "rotate-90",
                               )}
                             />
                           </button>
                           {submenuOpen ? (
-                            <div className="mb-1 ml-4 border-l border-sidebar-border/50 pl-2">
+                            <div className="mb-1 ml-[22px] border-l border-sidebar-border/30 pl-3 space-y-0.5">
                               {it.children!.map((child) => {
                                 const exactActive = navChildActive(child, pathname, searchParams);
                                 const childKey = child.search
@@ -595,12 +592,15 @@ function SidebarNav({
                                     search={(child.search ?? {}) as any}
                                     onClick={onNavigate}
                                     className={cn(
-                                      "mx-2 mb-px flex items-center rounded-[7px] px-2.5 py-1.5 text-[12px] transition-all duration-150",
+                                      "flex items-center rounded-lg px-3 py-1.5 text-[12px] transition-all duration-200",
                                       exactActive
-                                        ? "bg-sidebar-accent font-semibold text-sidebar-accent-foreground shadow-[inset_3px_0_0_0_var(--color-sidebar-primary)]"
-                                        : "text-sidebar-foreground/50 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground",
+                                        ? "bg-sidebar-primary/15 font-semibold text-sidebar-primary"
+                                        : "text-sidebar-foreground/45 hover:bg-sidebar-accent/40 hover:text-sidebar-foreground/80",
                                     )}
                                   >
+                                    {exactActive && (
+                                      <span className="mr-2 h-1.5 w-1.5 rounded-full bg-sidebar-primary shrink-0" />
+                                    )}
                                     {child.label}
                                   </Link>
                                 );
@@ -617,18 +617,18 @@ function SidebarNav({
                         to={it.to as any}
                         onClick={onNavigate}
                         className={cn(
-                          "mx-2 mb-px flex items-center gap-2.5 rounded-[7px] px-2.5 py-1.5 text-[12.5px] transition-all duration-150",
+                          "flex items-center gap-2.5 rounded-xl px-3 py-2 text-[12.5px] transition-all duration-200",
                           active
-                            ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold shadow-[inset_3px_0_0_0_var(--color-sidebar-primary)]"
-                            : "text-sidebar-foreground/55 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground",
+                            ? "bg-sidebar-accent/60 text-sidebar-accent-foreground font-semibold"
+                            : "text-sidebar-foreground/50 hover:bg-sidebar-accent/40 hover:text-sidebar-foreground/80",
                         )}
                       >
-                        <Icon
-                          className={cn(
-                            "h-3.5 w-3.5 shrink-0",
-                            active ? "text-sidebar-primary opacity-100" : "opacity-50",
-                          )}
-                        />
+                        <div className={cn(
+                          "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-colors",
+                          active ? "bg-sidebar-primary/20" : "bg-sidebar-accent/30",
+                        )}>
+                          <Icon className={cn("h-3.5 w-3.5", active ? "text-sidebar-primary" : "opacity-50")} />
+                        </div>
                         {it.label}
                       </Link>
                     );
@@ -636,7 +636,7 @@ function SidebarNav({
                 </div>
               )}
 
-              {collapsed && <div className="mt-1 h-px bg-sidebar-border/40 mx-1" />}
+              {collapsed && <div className="mt-1.5 h-px bg-sidebar-border/25 mx-2" />}
             </div>
           );
         })}
@@ -645,22 +645,32 @@ function SidebarNav({
       {/* ── Footer ── */}
       <div
         className={cn(
-          "border-t border-sidebar-border py-2 shrink-0 space-y-1",
-          collapsed ? "flex flex-col items-center gap-0 px-0 space-y-0" : "px-2",
+          "border-t border-sidebar-border/40 py-3 shrink-0 space-y-1",
+          collapsed ? "flex flex-col items-center gap-0.5 px-0 space-y-0" : "px-3",
         )}
       >
-        {/* User name */}
         {!collapsed && (
-          <div className="px-2.5 pb-1 truncate text-[11px] font-medium text-sidebar-foreground/70">
-            {profile?.nome ?? user?.email}
+          <div className="px-3 pb-2 flex items-center gap-2.5">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-sidebar-primary/25 to-brand-sky/15">
+              <span className="text-[11px] font-bold text-sidebar-primary">
+                {(profile?.nome ?? user?.email ?? "U")[0].toUpperCase()}
+              </span>
+            </div>
+            <div className="min-w-0">
+              <p className="truncate text-[12px] font-medium text-sidebar-foreground/80">
+                {profile?.nome ?? user?.email}
+              </p>
+              <p className="text-[10px] text-sidebar-foreground/35">
+                {activeArea === "admin" ? "Admin" : "Médico"}
+              </p>
+            </div>
           </div>
         )}
 
-        {/* Dual-role: trocar entre painel admin e portal do consultório */}
         {canSwitchAreas && !isSimulating && (
-          <div className={cn(collapsed ? "flex flex-col items-center gap-1" : "space-y-1 px-0.5")}>
+          <div className={cn(collapsed ? "flex flex-col items-center gap-0.5" : "space-y-0.5 px-0.5")}>
             {!collapsed && (
-              <p className="px-2.5 text-[9.5px] font-semibold uppercase tracking-widest text-sidebar-foreground/35">
+              <p className="px-3 text-[9px] font-semibold uppercase tracking-widest text-sidebar-foreground/25">
                 Área
               </p>
             )}
@@ -670,11 +680,11 @@ function SidebarNav({
                   type="button"
                   onClick={() => onSwitchArea("admin")}
                   className={cn(
-                    "flex items-center gap-2 rounded-md text-[11px] font-medium transition-colors",
-                    collapsed ? "h-8 w-8 justify-center" : "w-full px-2.5 py-2",
+                    "flex items-center gap-2 rounded-xl text-[11px] font-medium transition-all duration-200",
+                    collapsed ? "h-8 w-8 justify-center" : "w-full px-3 py-2",
                     activeArea === "admin"
-                      ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                      : "text-sidebar-foreground/50 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground",
+                      ? "bg-sidebar-accent/60 text-sidebar-accent-foreground"
+                      : "text-sidebar-foreground/40 hover:bg-sidebar-accent/40 hover:text-sidebar-foreground/70",
                   )}
                 >
                   <ShieldCheck className="h-3.5 w-3.5 shrink-0" />
@@ -693,11 +703,11 @@ function SidebarNav({
                   type="button"
                   onClick={() => onSwitchArea("cliente")}
                   className={cn(
-                    "flex items-center gap-2 rounded-md text-[11px] font-medium transition-colors",
-                    collapsed ? "h-8 w-8 justify-center" : "w-full px-2.5 py-2",
+                    "flex items-center gap-2 rounded-xl text-[11px] font-medium transition-all duration-200",
+                    collapsed ? "h-8 w-8 justify-center" : "w-full px-3 py-2",
                     activeArea === "cliente"
-                      ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                      : "text-sidebar-foreground/50 hover:bg-sidebar-accent/60 hover:text-sidebar-foreground",
+                      ? "bg-sidebar-accent/60 text-sidebar-accent-foreground"
+                      : "text-sidebar-foreground/40 hover:bg-sidebar-accent/40 hover:text-sidebar-foreground/70",
                   )}
                 >
                   <UserCheck className="h-3.5 w-3.5 shrink-0" />
@@ -713,20 +723,18 @@ function SidebarNav({
           </div>
         )}
 
-        {/* Client simulation picker (admin only, not simulating) */}
         {isAdmin && !isSimulating && (
           <ClientPicker collapsed={collapsed} onSelect={onStartSimulation} />
         )}
 
-        {/* Stop simulation (admin simulating) */}
         {isAdmin && isSimulating && (
           <Tooltip>
             <TooltipTrigger asChild>
               <button
                 onClick={onStopSimulation}
                 className={cn(
-                  "flex items-center gap-2 rounded-md text-[11px] font-medium text-amber-400 hover:text-amber-300 hover:bg-amber-400/10 transition-colors",
-                  collapsed ? "h-8 w-8 justify-center" : "w-full px-2.5 py-2",
+                  "flex items-center gap-2 rounded-xl text-[11px] font-medium text-amber-400 hover:text-amber-300 hover:bg-amber-400/10 transition-all duration-200",
+                  collapsed ? "h-8 w-8 justify-center" : "w-full px-3 py-2",
                 )}
               >
                 <X className="h-3.5 w-3.5 shrink-0" />
@@ -741,7 +749,6 @@ function SidebarNav({
           </Tooltip>
         )}
 
-        {/* Sign out */}
         <Tooltip>
           <TooltipTrigger asChild>
             <button
@@ -750,8 +757,8 @@ function SidebarNav({
                 navigate({ to: "/login", replace: true });
               }}
               className={cn(
-                "flex items-center gap-2 rounded-md text-[11px] text-sidebar-foreground/40 hover:text-sidebar-foreground hover:bg-sidebar-accent/60 transition-colors",
-                collapsed ? "h-8 w-8 justify-center" : "w-full px-2.5 py-2",
+                "flex items-center gap-2 rounded-xl text-[11px] text-sidebar-foreground/35 hover:text-sidebar-foreground/70 hover:bg-sidebar-accent/40 transition-all duration-200",
+                collapsed ? "h-8 w-8 justify-center" : "w-full px-3 py-2",
               )}
             >
               <LogOut className="h-3.5 w-3.5 shrink-0" />
@@ -765,17 +772,16 @@ function SidebarNav({
           )}
         </Tooltip>
 
-        {/* Toggle collapse — always last */}
         {onToggleCollapse && (
           <>
-            <div className={cn("h-px bg-sidebar-border/40", collapsed ? "w-8 mx-auto" : "mx-1")} />
+            <div className={cn("h-px bg-sidebar-border/25", collapsed ? "w-8 mx-auto" : "mx-1")} />
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
                   onClick={onToggleCollapse}
                   className={cn(
-                    "flex items-center gap-2 rounded-md text-[11px] text-sidebar-foreground/35 hover:text-sidebar-foreground hover:bg-sidebar-accent/60 transition-colors",
-                    collapsed ? "h-8 w-8 justify-center" : "w-full px-2.5 py-2",
+                    "flex items-center gap-2 rounded-xl text-[11px] text-sidebar-foreground/30 hover:text-sidebar-foreground/60 hover:bg-sidebar-accent/40 transition-all duration-200",
+                    collapsed ? "h-8 w-8 justify-center" : "w-full px-3 py-2",
                   )}
                   aria-label={collapsed ? "Expandir menu" : "Recolher menu"}
                 >
@@ -801,8 +807,6 @@ function SidebarNav({
     </TooltipProvider>
   );
 }
-
-// ── App Layout ────────────────────────────────────────────────────────────────
 
 export function AppLayout({ children }: { children: ReactNode }) {
   const {
@@ -887,10 +891,11 @@ export function AppLayout({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen w-full bg-background text-foreground">
       {/* ── Desktop sidebar ── */}
       <aside
-        className="relative hidden shrink-0 flex-col border-r border-sidebar-border bg-sidebar md:flex overflow-hidden"
+        className="relative hidden shrink-0 flex-col border-r border-sidebar-border/30 md:flex overflow-hidden"
         style={{
-          width: sidebarCollapsed ? "3.5rem" : "14rem",
+          width: sidebarCollapsed ? "3.75rem" : "15rem",
           transition: "width 280ms cubic-bezier(0.4, 0, 0.2, 1)",
+          background: "linear-gradient(180deg, oklch(0.155 0.068 264) 0%, oklch(0.12 0.058 264) 100%)",
         }}
       >
         <SidebarNav
@@ -902,12 +907,11 @@ export function AppLayout({ children }: { children: ReactNode }) {
 
       {/* ── Mobile: header bar + Sheet drawer ── */}
       <div className="flex flex-1 min-w-0 flex-col md:contents">
-        {/* Mobile top bar */}
-        <header className="flex h-12 shrink-0 items-center gap-3 border-b border-border bg-card px-4 shadow-sm md:hidden">
+        <header className="flex h-14 shrink-0 items-center gap-3 border-b border-border/50 bg-card/80 backdrop-blur-xl px-4 shadow-sm md:hidden">
           <button
             aria-label="Abrir menu"
             onClick={() => setMobileOpen(true)}
-            className="rounded-md p-1.5 text-foreground/60 hover:bg-muted transition-colors"
+            className="rounded-xl p-2 text-foreground/60 hover:bg-secondary transition-colors"
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -921,9 +925,9 @@ export function AppLayout({ children }: { children: ReactNode }) {
             }}
           />
           {isSimulating && (
-            <div className="ml-auto flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1">
-              <Eye className="h-3 w-3 text-amber-400" />
-              <span className="text-[11px] font-semibold text-amber-400 max-w-[120px] truncate">
+            <div className="ml-auto flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1.5">
+              <Eye className="h-3 w-3 text-amber-500" />
+              <span className="text-[11px] font-semibold text-amber-600 max-w-[120px] truncate">
                 {simulatedClientNome}
               </span>
               <button
@@ -931,7 +935,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
                   stopSimulation();
                   navigate({ to: "/admin/dashboard", replace: true });
                 }}
-                className="ml-1 text-amber-400/60 hover:text-amber-400"
+                className="ml-1 text-amber-400/60 hover:text-amber-500"
               >
                 <X className="h-3 w-3" />
               </button>
@@ -939,11 +943,13 @@ export function AppLayout({ children }: { children: ReactNode }) {
           )}
         </header>
 
-        {/* Mobile drawer */}
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetContent
             side="left"
-            className="w-56 p-0 flex flex-col bg-sidebar border-sidebar-border"
+            className="w-60 p-0 flex flex-col border-sidebar-border/30"
+            style={{
+              background: "linear-gradient(180deg, oklch(0.155 0.068 264) 0%, oklch(0.12 0.058 264) 100%)",
+            }}
           >
             <SheetTitle className="sr-only">Menu de navegação</SheetTitle>
             <SidebarNav {...navProps} onNavigate={() => setMobileOpen(false)} />

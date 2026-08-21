@@ -63,17 +63,17 @@ export function AnalyticsFilters({
 
   return (
     <div className={cn("flex flex-wrap items-end gap-2", className)}>
-      <div className="flex items-center gap-1 rounded-xl border border-border bg-secondary/30 p-1">
+      <div className="flex items-center gap-0.5 rounded-2xl border border-border/40 bg-secondary/30 p-1 backdrop-blur-sm">
         {PRESETS.map((p) => (
           <button
             key={p.id}
             type="button"
             onClick={() => setPreset(p.id)}
             className={cn(
-              "rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors",
+              "rounded-xl px-3 py-1.5 text-xs font-medium transition-all duration-200",
               value.range.preset === p.id
-                ? "bg-card text-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground",
+                ? "bg-card text-foreground shadow-sm border border-border/40"
+                : "text-muted-foreground hover:text-foreground hover:bg-card/50",
             )}
           >
             {p.label}
@@ -90,7 +90,7 @@ export function AnalyticsFilters({
               range: buildRange("month", { monthKey: e.target.value }),
             })
           }
-          className="h-9 rounded-xl border border-input bg-background px-3 text-xs"
+          className="h-9 rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm px-3 text-xs shadow-xs transition-colors focus:border-primary/40"
         >
           {months.map((m) => (
             <option key={m.value} value={m.value}>
@@ -109,7 +109,7 @@ export function AnalyticsFilters({
               range: buildRange("year", { yearKey: e.target.value }),
             })
           }
-          className="h-9 rounded-xl border border-input bg-background px-3 text-xs"
+          className="h-9 rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm px-3 text-xs shadow-xs transition-colors focus:border-primary/40"
         >
           {years.map((y) => (
             <option key={y.value} value={y.value}>
@@ -123,7 +123,7 @@ export function AnalyticsFilters({
         <select
           value={value.clienteId ?? ""}
           onChange={(e) => onChange({ ...value, clienteId: e.target.value || null })}
-          className="h-9 min-w-[10rem] rounded-xl border border-input bg-background px-3 text-xs"
+          className="h-9 min-w-[10rem] rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm px-3 text-xs shadow-xs transition-colors focus:border-primary/40"
         >
           <option value="">Todos os clientes</option>
           {clientes.map((c) => (
@@ -138,7 +138,7 @@ export function AnalyticsFilters({
         <select
           value={value.categoria ?? ""}
           onChange={(e) => onChange({ ...value, categoria: e.target.value || null })}
-          className="h-9 min-w-[9rem] rounded-xl border border-input bg-background px-3 text-xs"
+          className="h-9 min-w-[9rem] rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm px-3 text-xs shadow-xs transition-colors focus:border-primary/40"
         >
           <option value="">Todas categorias</option>
           {categorias.map((c) => (
@@ -153,7 +153,7 @@ export function AnalyticsFilters({
         <select
           value={value.plataforma ?? ""}
           onChange={(e) => onChange({ ...value, plataforma: e.target.value || null })}
-          className="h-9 min-w-[9rem] rounded-xl border border-input bg-background px-3 text-xs"
+          className="h-9 min-w-[9rem] rounded-xl border border-border/50 bg-card/80 backdrop-blur-sm px-3 text-xs shadow-xs transition-colors focus:border-primary/40"
         >
           {PLATAFORMAS.map((p) => (
             <option key={p.id || "all"} value={p.id}>
