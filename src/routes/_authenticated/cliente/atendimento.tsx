@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_authenticated/cliente/atendimento")({
 
 function ClienteAtendimento() {
   return (
-    <div className="px-6 py-6 space-y-6">
+    <div className="px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto space-y-6">
       <header className="animate-fade-up">
         <span className="inline-flex items-center rounded-full bg-sky-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-sky-700 mb-2">
           Suporte

@@ -109,7 +109,7 @@ function LeadCard({ lead, onOpen }: { lead: Lead; onOpen: () => void }) {
       ref={setNodeRef}
       style={style}
       className={cn(
-        "flex w-full overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all",
+        "flex w-full overflow-hidden rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm shadow-sm transition-all",
         "hover:border-primary/20 hover:shadow-md",
         isDragging && "opacity-40",
         lead.status === "perdido" && "opacity-75",
@@ -271,7 +271,7 @@ export function FunilHeader({ leads }: { leads: Lead[] }) {
       {cards.map((card) => (
         <div
           key={card.label}
-          className="rounded-2xl border border-border bg-card px-4 py-4 shadow-sm"
+          className="rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm px-4 py-4 shadow-sm"
         >
           <p className="text-[10.5px] font-semibold uppercase tracking-wide text-muted-foreground">
             {card.label}
@@ -393,7 +393,7 @@ export function KanbanBoard({ leads, focusLead, onFocusLeadConsumed }: KanbanBoa
         </div>
         <DragOverlay>
           {activeLead ? (
-            <div className="w-[212px] rounded-xl border border-sky-300 bg-card p-3 text-left shadow-lg">
+            <div className="w-[212px] rounded-2xl border border-sky-300 bg-card/80 backdrop-blur-sm p-3 text-left shadow-lg">
               <LeadCardContent lead={activeLead} />
             </div>
           ) : null}

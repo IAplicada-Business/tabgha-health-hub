@@ -85,7 +85,7 @@ export function CalendarGrid({ events, filters, onMonthChange }: Props) {
       </div>
 
       {/* Grid */}
-      <div className="rounded-xl border border-border overflow-hidden">
+      <div className="rounded-2xl border border-border/50 overflow-hidden">
         {/* Weekday headers */}
         <div className="grid grid-cols-7 bg-secondary">
           {WEEKDAYS.map((wd) => (
@@ -96,9 +96,9 @@ export function CalendarGrid({ events, filters, onMonthChange }: Props) {
         </div>
 
         {/* Day cells */}
-        <div className="grid grid-cols-7 border-t border-border">
+        <div className="grid grid-cols-7 border-t border-border/50">
           {Array.from({ length: leadingEmpty }).map((_, i) => (
-            <div key={`l${i}`} className="min-h-[80px] border-b border-r border-border bg-secondary/20" />
+            <div key={`l${i}`} className="min-h-[80px] border-b border-r border-border/50 bg-secondary/20" />
           ))}
 
           {days.map((day, idx) => {
@@ -109,7 +109,7 @@ export function CalendarGrid({ events, filters, onMonthChange }: Props) {
               <div
                 key={day.toISOString()}
                 className={cn(
-                  "min-h-[80px] p-1.5 border-b border-r border-border",
+                  "min-h-[80px] p-1.5 border-b border-r border-border/50",
                   today && "bg-primary/[0.07]",
                   isLast && "border-r-0",
                 )}
@@ -142,7 +142,7 @@ export function CalendarGrid({ events, filters, onMonthChange }: Props) {
           })}
 
           {Array.from({ length: trailingEmpty }).map((_, i) => (
-            <div key={`t${i}`} className={cn("min-h-[80px] border-b border-r border-border bg-secondary/20", i === trailingEmpty - 1 && "border-r-0")} />
+            <div key={`t${i}`} className={cn("min-h-[80px] border-b border-r border-border/50 bg-secondary/20", i === trailingEmpty - 1 && "border-r-0")} />
           ))}
         </div>
       </div>

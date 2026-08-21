@@ -128,7 +128,7 @@ function ConteudoPage() {
     .filter(({ count }) => count > 0);
 
   return (
-    <div className="px-6 py-6 space-y-6">
+    <div className="px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto space-y-6">
       <div>
         <span className="eyebrow-pill">Editorial</span>
         <h1 className="mt-2 text-xl font-bold tracking-tight">Conteúdo</h1>
@@ -149,14 +149,14 @@ function ConteudoPage() {
           {pipelineCounts.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {pipelineCounts.map(({ s, label, count, color }) => (
-                <div key={s} className="flex items-center gap-2 rounded-xl border border-border bg-card px-3.5 py-2 shadow-[0_1px_2px_rgba(15,27,53,0.04)]">
+                <div key={s} className="flex items-center gap-2 rounded-xl border border-border/50 bg-card px-3.5 py-2 shadow-[0_1px_2px_rgba(15,27,53,0.04)]">
                   <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${color}`}>{label}</span>
                   <span className="text-sm font-bold">{count}</span>
                 </div>
               ))}
             </div>
           )}
-          <div className="divide-y divide-border rounded-xl border border-border">
+          <div className="divide-y divide-border/30 rounded-2xl border border-border/50">
             {conteudos.map((c) => (
               <div key={c.id} className="flex items-center gap-4 px-5 py-4 hover:bg-secondary/30 transition-colors">
                 <div className="flex-1 min-w-0">

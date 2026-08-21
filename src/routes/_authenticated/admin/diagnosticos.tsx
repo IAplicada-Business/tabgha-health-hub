@@ -27,7 +27,7 @@ function DiagnosticosPage() {
   const semDiagnostico = clientes.filter((c) => !c.diagnostico);
 
   return (
-    <div className="px-6 py-6 space-y-6">
+    <div className="px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto space-y-6">
       <div>
         <span className="eyebrow-pill">Estratégia</span>
         <h1 className="mt-2 text-xl font-bold tracking-tight">Diagnósticos</h1>
@@ -35,7 +35,7 @@ function DiagnosticosPage() {
       </div>
 
       {/* Banner informativo — diagnóstico é exclusivamente interno */}
-      <div className="flex items-start gap-3 rounded-xl border border-blue-100 bg-blue-100/40 px-4 py-3 text-blue-700">
+      <div className="flex items-start gap-3 rounded-2xl border border-blue-100 bg-blue-100/40 px-4 py-3 text-blue-700">
         <Stethoscope className="mt-0.5 h-4 w-4 shrink-0 opacity-70" />
         <p className="text-xs leading-relaxed">
           <span className="font-semibold">Diagnóstico 100% interno.</span> Clientes acessam somente depois do onboarding, dentro do próprio portal — nunca pela landing pública. Não existe diagnóstico externo ou de captação.
@@ -50,7 +50,7 @@ function DiagnosticosPage() {
         ].map(({ label, value, color, bg }, i) => (
           <div
             key={label}
-            className="card-lift animate-fade-up rounded-2xl border border-border bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
+            className="card-lift animate-fade-up rounded-2xl border border-border/50 bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
             style={{ animationDelay: `${i * 75}ms` }}
           >
             <p className="text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground">{label}</p>
@@ -75,7 +75,7 @@ function DiagnosticosPage() {
           description="Os clientes aparecem aqui conforme forem adicionados."
         />
       ) : (
-        <div className="divide-y divide-border rounded-xl border border-border">
+        <div className="divide-y divide-border/30 rounded-2xl border border-border/50">
           {clientes.map((c) => (
             <Link
               key={c.id}

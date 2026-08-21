@@ -5,20 +5,18 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium tracking-tight cursor-pointer transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium tracking-tight cursor-pointer transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        /* btn-primary — TABGHA OS blue CTA */
         default:
-          "bg-primary text-primary-foreground hover:bg-accent-hover",
+          "bg-gradient-to-b from-primary to-accent-hover text-primary-foreground shadow-[0_1px_3px_oklch(0.440_0.158_261/30%),inset_0_1px_0_oklch(1_0_0/15%)] hover:shadow-[0_4px_12px_oklch(0.440_0.158_261/30%)] hover:-translate-y-px active:translate-y-0",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/85",
-        /* btn-ghost — glass border on dark */
+          "bg-gradient-to-b from-destructive to-destructive/90 text-destructive-foreground shadow-sm hover:shadow-md hover:-translate-y-px",
         outline:
-          "border border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground",
+          "border border-border/60 bg-card/80 backdrop-blur-sm text-foreground shadow-xs hover:bg-secondary hover:border-primary/20 hover:text-accent-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/70",
+          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/70 hover:shadow-sm",
         ghost:
           "text-foreground/80 hover:bg-accent hover:text-accent-foreground",
         link:
@@ -26,8 +24,8 @@ const buttonVariants = cva(
       },
       size: {
         default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
+        sm: "h-8 rounded-lg px-3 text-xs",
+        lg: "h-11 rounded-xl px-8 text-[15px]",
         icon: "h-9 w-9",
       },
     },

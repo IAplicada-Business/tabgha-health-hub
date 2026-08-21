@@ -6,9 +6,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * TABGHA OS Design System — Light Professional Palette
+ * TABGHA OS Design System — Modern Professional Palette
  *
- * Interior da aplicação: branco/cinza claro.
+ * Interior da aplicação: tons claros com glassmorphism sutil.
  * Sidebar mantém dark navy (tokens --sidebar-*).
  * Login page usa dark navy via classe ou bg inline.
  */
@@ -74,16 +74,16 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.75rem;
 
-  /* ── TABGHA OS — Light Professional Base ── */
-  --background: oklch(0.975 0.004 264);        /* #F7F9FC very light blue-gray */
+  /* ── TABGHA OS — Modern Professional Base ── */
+  --background: oklch(0.975 0.006 264);        /* #F5F7FB cool blue-gray */
   --foreground: oklch(0.14 0.044 264);          /* #0B1A2B brand navy */
 
-  --card: oklch(1 0 0);                         /* pure white */
+  --card: oklch(1 0 0 / 85%);                  /* translucent white */
   --card-foreground: oklch(0.14 0.044 264);
 
-  --popover: oklch(1 0 0);
+  --popover: oklch(1 0 0 / 92%);
   --popover-foreground: oklch(0.14 0.044 264);
 
   /* Primary = AZUL #1A5FAD */
@@ -91,10 +91,10 @@
   --primary-foreground: oklch(1 0 0);
 
   /* Secondary = light gray surface */
-  --secondary: oklch(0.945 0.006 264);          /* #EEF1F6 */
+  --secondary: oklch(0.955 0.008 264);          /* #F0F2F8 */
   --secondary-foreground: oklch(0.22 0.040 264);
 
-  --muted: oklch(0.945 0.006 264);
+  --muted: oklch(0.950 0.008 264);
   --muted-foreground: oklch(0.50 0.018 264);    /* medium gray */
 
   /* Accent = blue tint for hovers */
@@ -104,7 +104,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.971 0.013 17.38);
 
-  --border: oklch(0.14 0.044 264 / 10%);        /* dark/10% hairline */
+  --border: oklch(0.14 0.044 264 / 8%);
   --input: oklch(0.14 0.044 264 / 7%);
   --ring: oklch(0.440 0.158 261);
 
@@ -115,15 +115,15 @@
   --chart-4: oklch(0.730 0.180 155);
   --chart-5: oklch(0.630 0.220 17);
 
-  /* ── Sidebar · brand navy #0B1B3E ── */
-  --sidebar: oklch(0.165 0.068 264);            /* #0B1B3E brand navy */
+  /* ── Sidebar · brand navy gradient ── */
+  --sidebar: oklch(0.155 0.068 264);            /* #0A1837 deep navy */
   --sidebar-foreground: oklch(0.963 0.005 264);
-  --sidebar-primary: oklch(0.440 0.158 261);    /* #1A5FAD brand blue */
+  --sidebar-primary: oklch(0.530 0.170 261);    /* brighter blue for sidebar */
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.963 0.005 264 / 8%);
+  --sidebar-accent: oklch(0.963 0.005 264 / 10%);
   --sidebar-accent-foreground: oklch(0.963 0.005 264);
-  --sidebar-border: oklch(0.963 0.005 264 / 10%);
-  --sidebar-ring: oklch(0.440 0.158 261);
+  --sidebar-border: oklch(0.963 0.005 264 / 8%);
+  --sidebar-ring: oklch(0.530 0.170 261);
 
   /* Marca Tabgha */
   --brand-navy: oklch(0.165 0.068 264);         /* #0B1B3E */
@@ -132,23 +132,27 @@
   --accent-2: oklch(0.770 0.160 72);
   --accent-hover: oklch(0.375 0.135 261);
 
-  /* Status badges — otimizado para fundo branco (contraste AA ≥4.5:1) */
-  --green-100: oklch(0.920 0.065 155);          /* soft green bg */
-  --green-700: oklch(0.42 0.175 155);           /* dark green text */
-  --yellow-100: oklch(0.950 0.075 72);          /* soft amber bg */
-  --yellow-700: oklch(0.48 0.130 72);           /* dark amber text */
-  --blue-100: oklch(0.920 0.065 264);           /* soft blue bg */
-  --blue-700: oklch(0.463 0.170 264);           /* brand blue text */
-  --slate-100: oklch(0.920 0.006 264);          /* light gray bg */
-  --slate-600: oklch(0.45 0.018 264);           /* medium gray text */
-  --red-100: oklch(0.940 0.055 17);             /* soft red bg */
-  --red-700: oklch(0.46 0.220 17);              /* dark red text */
+  /* Status badges */
+  --green-100: oklch(0.940 0.055 155);
+  --green-700: oklch(0.42 0.175 155);
+  --yellow-100: oklch(0.960 0.065 72);
+  --yellow-700: oklch(0.48 0.130 72);
+  --blue-100: oklch(0.940 0.055 264);
+  --blue-700: oklch(0.463 0.170 264);
+  --slate-100: oklch(0.940 0.006 264);
+  --slate-600: oklch(0.45 0.018 264);
+  --red-100: oklch(0.950 0.045 17);
+  --red-700: oklch(0.46 0.220 17);
+
+  /* Modern shadow system */
+  --shadow-xs: 0 1px 2px oklch(0.14 0.044 264 / 4%);
+  --shadow-sm: 0 1px 3px oklch(0.14 0.044 264 / 5%), 0 1px 2px oklch(0.14 0.044 264 / 3%);
+  --shadow-md: 0 4px 12px oklch(0.14 0.044 264 / 6%), 0 1px 4px oklch(0.14 0.044 264 / 4%);
+  --shadow-lg: 0 8px 24px oklch(0.14 0.044 264 / 8%), 0 2px 8px oklch(0.14 0.044 264 / 4%);
+  --shadow-xl: 0 16px 48px oklch(0.14 0.044 264 / 10%), 0 4px 16px oklch(0.14 0.044 264 / 5%);
 }
 
-/* .dark não é mais o tema padrão — sidebar usa tokens próprios */
-.dark {
-  /* sidebar aplica bg-sidebar, not bg-background */
-}
+.dark {}
 
 @layer base {
   * {
@@ -157,6 +161,10 @@
 
   body {
     background-color: var(--color-background);
+    background-image:
+      radial-gradient(ellipse at 20% 0%, oklch(0.440 0.158 261 / 4%) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, oklch(0.770 0.095 215 / 3%) 0%, transparent 60%);
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: 'Poppins', -apple-system, system-ui, sans-serif;
     font-size: 14px;
@@ -168,8 +176,8 @@
 
   h1 {
     font-size: clamp(1.625rem, 3vw, 2.125rem);
-    font-weight: 600;
-    letter-spacing: -0.01em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     line-height: 1.15;
   }
   h2 {
@@ -184,19 +192,34 @@
     line-height: 1.3;
   }
 
-  /* Light scrollbars */
-  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
-    background: oklch(0.14 0.044 264 / 15%);
+    background: oklch(0.14 0.044 264 / 12%);
     border-radius: 999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: oklch(0.14 0.044 264 / 30%);
+    background: oklch(0.14 0.044 264 / 25%);
+  }
+
+  /* Modern select styling */
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  select:focus {
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px oklch(0.440 0.158 261 / 12%);
   }
 }
 
-/* ── TABGHA OS Utility Classes ── */
+/* ── TABGHA OS Modern Utility Classes ── */
 
 .text-highlight { color: var(--accent-2); }
 
@@ -209,25 +232,24 @@
 
 .kpi-number {
   font-size: clamp(1.875rem, 4vw, 2.75rem);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
 }
 
-/* Eyebrow pill — adaptado para fundo claro */
 .eyebrow-pill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: oklch(0.14 0.044 264 / 6%);
-  border: 1px solid oklch(0.14 0.044 264 / 10%);
-  border-radius: 4px;
-  padding: 4px 10px;
-  font-size: 11px;
-  font-weight: 500;
+  gap: 8px;
+  background: linear-gradient(135deg, oklch(0.440 0.158 261 / 8%) 0%, oklch(0.770 0.095 215 / 6%) 100%);
+  border: 1px solid oklch(0.440 0.158 261 / 12%);
+  border-radius: 100px;
+  padding: 5px 14px;
+  font-size: 10.5px;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: oklch(0.45 0.018 264);
+  color: oklch(0.440 0.158 261);
 }
 .eyebrow-pill::before {
   content: '';
@@ -235,11 +257,40 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: oklch(0.463 0.170 264);
+  background: oklch(0.530 0.170 261);
   flex-shrink: 0;
+  box-shadow: 0 0 6px oklch(0.530 0.170 261 / 40%);
 }
 
-/* Skeleton shimmer — light theme */
+/* Glass card effect */
+.glass-card {
+  background: oklch(1 0 0 / 70%);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid oklch(1 0 0 / 60%);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Modern card with soft glow */
+.modern-card {
+  background: oklch(1 0 0 / 85%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid oklch(0.14 0.044 264 / 6%);
+  box-shadow:
+    var(--shadow-sm),
+    inset 0 1px 0 oklch(1 0 0 / 60%);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.modern-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    var(--shadow-lg),
+    inset 0 1px 0 oklch(1 0 0 / 60%);
+  border-color: oklch(0.440 0.158 261 / 15%);
+}
+
+/* Skeleton shimmer */
 @keyframes shimmer {
   0%   { background-position: -200% 0; }
   100% { background-position:  200% 0; }
@@ -257,12 +308,11 @@
 
 /* Fade-up reveal */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.animate-fade-up { animation: fadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-up { animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
-/* Stagger delays — use with animate-fade-up */
 .delay-0   { animation-delay: 0ms; }
 .delay-75  { animation-delay: 75ms; }
 .delay-150 { animation-delay: 150ms; }
@@ -271,42 +321,79 @@
 .delay-375 { animation-delay: 375ms; }
 .delay-450 { animation-delay: 450ms; }
 
-/* Fade-in (opacity only) */
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 .animate-fade-in { animation: fadeIn 0.35s ease-out both; }
 
-/* Slide-in from right */
 @keyframes slideInRight {
   from { opacity: 0; transform: translateX(16px); }
   to   { opacity: 1; transform: translateX(0); }
 }
 .animate-slide-in-right { animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
-/* Scale-in (for cards/dialogs) */
 @keyframes scaleIn {
   from { opacity: 0; transform: scale(0.97); }
   to   { opacity: 1; transform: scale(1); }
 }
 .animate-scale-in { animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
-/* Card hover lift — shared utility */
+/* Card hover lift */
 .card-lift {
-  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.18s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.18s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
 }
 .card-lift:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px -8px oklch(0.14 0.044 264 / 14%);
-  border-color: oklch(0.440 0.158 261 / 20%);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: oklch(0.440 0.158 261 / 15%);
 }
 
-/* Number count-up shimmer (for KPI values) */
+/* Number count-up shimmer */
 @keyframes numericPop {
   from { opacity: 0; transform: scale(0.88); }
   to   { opacity: 1; transform: scale(1); }
 }
 .animate-numeric-pop { animation: numericPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+/* Gradient pill active indicator */
+.pill-active {
+  background: linear-gradient(135deg, oklch(0.440 0.158 261) 0%, oklch(0.530 0.170 261) 100%);
+  color: white;
+  box-shadow: 0 2px 8px oklch(0.440 0.158 261 / 25%);
+}
+
+/* Glow dot for active nav items */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 4px oklch(0.530 0.170 261 / 40%); }
+  50%      { box-shadow: 0 0 8px oklch(0.530 0.170 261 / 60%); }
+}
+
+/* Modern progress bar */
+.progress-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: oklch(0.14 0.044 264 / 6%);
+  overflow: hidden;
+}
+.progress-bar > div {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Floating label for inputs */
+.input-modern {
+  border-radius: var(--radius);
+  border: 1px solid oklch(0.14 0.044 264 / 8%);
+  background: oklch(1 0 0 / 80%);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+.input-modern:focus {
+  border-color: oklch(0.440 0.158 261 / 40%);
+  box-shadow: 0 0 0 3px oklch(0.440 0.158 261 / 10%);
+  background: oklch(1 0 0 / 95%);
+}

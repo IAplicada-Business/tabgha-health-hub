@@ -71,7 +71,7 @@ function CalendarioPage() {
   });
 
   return (
-    <div className="px-6 py-6 space-y-6">
+    <div className="px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto space-y-6">
       {/* Page header */}
       <header className="animate-fade-up">
         <span className="inline-flex items-center rounded-full bg-sky-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-sky-700 mb-2">
@@ -83,7 +83,7 @@ function CalendarioPage() {
 
       {/* KPI strip */}
       <div
-        className="card-lift animate-fade-up rounded-2xl border border-border bg-card px-5 pt-5 pb-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)] flex flex-col"
+        className="card-lift animate-fade-up rounded-2xl border border-border/50 bg-card px-5 pt-5 pb-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)] flex flex-col"
         style={{ animationDelay: "75ms" }}
       >
         <span className="text-[9px] font-black tracking-[0.16em] text-muted-foreground/40 mb-4">01</span>
@@ -96,7 +96,7 @@ function CalendarioPage() {
 
       {/* Calendar panel — light card, same as admin */}
       <div
-        className="animate-fade-up rounded-2xl border border-border bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
+        className="animate-fade-up rounded-2xl border border-border/50 bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
         style={{ animationDelay: "150ms" }}
       >
         <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-4">Agenda do mês</p>

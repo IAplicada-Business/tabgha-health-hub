@@ -140,7 +140,7 @@ function AutomacoesLeadsPage() {
   ];
 
   return (
-    <div className="px-6 py-6 space-y-6">
+    <div className="px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto space-y-6">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-3 animate-fade-up">
         <div>
@@ -176,7 +176,7 @@ function AutomacoesLeadsPage() {
             {kpis.map((k, i) => (
               <div
                 key={k.label}
-                className="card-lift animate-fade-up rounded-2xl border border-border bg-card px-5 pt-5 pb-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)] flex flex-col"
+                className="card-lift animate-fade-up rounded-2xl border border-border/50 bg-card px-5 pt-5 pb-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)] flex flex-col"
                 style={{ animationDelay: i * 75 + "ms" }}
               >
                 <span className="text-[9px] font-black tracking-[0.16em] text-muted-foreground/40 mb-4">{k.rank}</span>
@@ -188,7 +188,7 @@ function AutomacoesLeadsPage() {
           </div>
 
           {/* Tabs */}
-          <div className="flex gap-0.5 border-b border-border animate-fade-up" style={{ animationDelay: "300ms" }}>
+          <div className="flex gap-0.5 border-b border-border/50 animate-fade-up" style={{ animationDelay: "300ms" }}>
             {TABS.map((t) => (
               <button
                 key={t}
@@ -231,11 +231,11 @@ function AutomacoesLeadsPage() {
 
               {/* Tabela por cliente */}
               <div
-                className="rounded-2xl border border-border bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)] animate-fade-up"
+                className="rounded-2xl border border-border/50 bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)] animate-fade-up"
                 style={{ animationDelay: "450ms" }}
               >
                 <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">Por cliente</p>
-                <div className="rounded-xl border border-border overflow-hidden">
+                <div className="rounded-2xl border border-border/50 overflow-hidden">
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
@@ -246,7 +246,7 @@ function AutomacoesLeadsPage() {
                           ))}
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-border">
+                      <tbody className="divide-y divide-border/30">
                         {metricas.map((m, i) => (
                           <tr key={m.id} className="hover:bg-secondary/30 transition-colors">
                             <td className="px-4 py-3 text-[10px] font-black text-muted-foreground/30 tabular-nums">

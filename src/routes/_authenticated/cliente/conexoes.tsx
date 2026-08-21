@@ -128,7 +128,7 @@ function ConexoesPage() {
   const connected = CAMPOS.filter(({ name }) => !!form.watch(name)).length;
 
   return (
-    <div className="space-y-8 px-6 py-6">
+    <div className="space-y-8 px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
       <header className="animate-fade-up">
         <span className="eyebrow-pill">Configurações</span>
         <h1 className="mt-3 text-xl font-bold tracking-tight">Conexões</h1>
@@ -152,7 +152,7 @@ function ConexoesPage() {
 
         {clienteId ? <WhatsappConnectCard clienteId={clienteId} /> : null}
 
-        <div className="rounded-2xl border border-border bg-card px-5 py-4 text-sm">
+        <div className="rounded-2xl border border-border/50 bg-card px-5 py-4 text-sm">
           <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
             Como o agente fala neste consultório
           </p>
@@ -212,7 +212,7 @@ function ConexoesPage() {
                   key={name}
                   className={cn(
                     "flex flex-col rounded-2xl border bg-card px-5 pb-4 pt-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]",
-                    hasValue ? "border-primary/15" : "border-border",
+                    hasValue ? "border-primary/15" : "border-border/50",
                   )}
                   style={{ animationDelay: `${i * 75}ms` }}
                 >

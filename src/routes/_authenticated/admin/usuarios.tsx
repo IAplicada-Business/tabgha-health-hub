@@ -231,7 +231,7 @@ function AddUserDialog({
           })}
           className="space-y-4 py-2"
         >
-          <p className="rounded-lg border border-border bg-muted/40 px-3 py-2 text-[11px] text-muted-foreground">
+          <p className="rounded-lg border border-border/50 bg-muted/40 px-3 py-2 text-[11px] text-muted-foreground">
             Isso cria o <strong>login</strong> (email + senha provisória{" "}
             <strong>{provisionalPassword()}</strong>). Dá para liberar Admin e Portal no mesmo
             usuário — depois a pessoa troca de área no menu.
@@ -263,7 +263,7 @@ function AddUserDialog({
 
           <div className="space-y-2">
             <Label>Perfis de acesso</Label>
-            <div className="space-y-2 rounded-xl border border-border p-3">
+            <div className="space-y-2 rounded-xl border border-border/50 p-3">
               <div className="flex items-center gap-2">
                 <Checkbox
                   id="role-admin"
@@ -440,7 +440,7 @@ function EditAccessDialog({
         </DialogHeader>
 
         <div className="space-y-4 py-2">
-          <div className="rounded-md border border-border bg-muted/30 px-3 py-2 space-y-2">
+          <div className="rounded-md border border-border/50 bg-muted/30 px-3 py-2 space-y-2">
             <p className="text-[11px] text-muted-foreground">
               A senha não fica salva em texto — use <strong>Redefinir senha</strong> para gerar de
               novo a provisória <strong>{provisionalPassword()}</strong> e copiar.
@@ -494,7 +494,7 @@ function EditAccessDialog({
 
           <div className="space-y-2">
             <Label>Perfis de acesso</Label>
-            <div className="space-y-2 rounded-xl border border-border p-3">
+            <div className="space-y-2 rounded-xl border border-border/50 p-3">
               <div className="flex items-center gap-2">
                 <Checkbox
                   id="edit-role-admin"
@@ -592,7 +592,7 @@ function UsuariosPage() {
   const dual = team.filter((m) => m.roles.includes("admin") && m.roles.includes("cliente"));
 
   return (
-    <div className="px-6 py-6 space-y-6">
+    <div className="px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto space-y-6">
       <div className="flex items-start justify-between gap-4">
         <div>
           <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-slate-600 mb-2">
@@ -621,7 +621,7 @@ function UsuariosPage() {
           ].map((kpi, i) => (
             <div
               key={kpi.label}
-              className="rounded-2xl border border-border bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
+              className="rounded-2xl border border-border/50 bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
               style={{ animationDelay: i * 75 + "ms" }}
             >
               <p className="text-[10.5px] font-semibold uppercase tracking-widest text-muted-foreground">
@@ -651,13 +651,13 @@ function UsuariosPage() {
           action={{ label: "Adicionar membro", onClick: () => setShowAdd(true) }}
         />
       ) : (
-        <div className="rounded-2xl border border-border bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
+        <div className="rounded-2xl border border-border/50 bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
           <div className="mb-3 flex items-center justify-between">
             <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
               Membros {isFetching ? "· atualizando…" : ""}
             </p>
           </div>
-          <div className="divide-y divide-border overflow-hidden rounded-xl border border-border">
+          <div className="divide-y divide-border/30 overflow-hidden rounded-2xl border border-border/50">
             {team.map((member, i) => (
               <div
                 key={member.id}

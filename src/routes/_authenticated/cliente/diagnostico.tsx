@@ -81,7 +81,7 @@ function Section({
   return (
     <div
       className={cn(
-        "card-lift animate-fade-up overflow-hidden rounded-2xl border border-border bg-card",
+        "card-lift animate-fade-up overflow-hidden rounded-2xl border border-border/50 bg-card",
         "shadow-[0_1px_3px_rgba(15,27,53,0.04)]",
         className,
       )}
@@ -152,7 +152,7 @@ function DiagnosticoPage() {
   const ready = d && hasPublicContent(d);
 
   return (
-    <div className="space-y-6 px-6 py-6">
+    <div className="space-y-6 px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
       <header className="animate-fade-up">
         <span className="mb-2 inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary">
           Estratégia
@@ -170,7 +170,7 @@ function DiagnosticoPage() {
         </div>
       ) : !ready ? (
         <div
-          className="card-lift animate-fade-up overflow-hidden rounded-2xl border border-border bg-card shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
+          className="card-lift animate-fade-up overflow-hidden rounded-2xl border border-border/50 bg-card shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
           style={{ animationDelay: "75ms" }}
         >
           <div className="flex items-center gap-2.5 border-b border-primary/15 bg-primary/5 px-5 py-3">

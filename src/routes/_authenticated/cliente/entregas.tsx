@@ -201,7 +201,7 @@ function EntregasPage() {
   const visible = filter === "acao" ? pendentes : entregas;
 
   return (
-    <div className="space-y-6 px-6 py-6">
+    <div className="space-y-6 px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <span className="eyebrow-pill">Portal</span>
@@ -216,7 +216,7 @@ function EntregasPage() {
             </p>
           ) : null}
         </div>
-        <div className="flex items-center gap-1.5 rounded-lg border border-border bg-secondary/40 p-1">
+        <div className="flex items-center gap-1.5 rounded-lg border border-border/50 bg-secondary/40 p-1">
           <Button
             size="sm"
             variant={filter === "acao" ? "default" : "ghost"}
@@ -251,7 +251,7 @@ function EntregasPage() {
           }
         />
       ) : (
-        <div className="divide-y divide-border rounded-xl border border-border">
+        <div className="divide-y divide-border/30 rounded-2xl border border-border/50">
           {visible.map((entrega) => (
             <div
               key={entrega.id}

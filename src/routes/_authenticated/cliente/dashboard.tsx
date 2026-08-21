@@ -182,7 +182,7 @@ function ClienteDashboard() {
   ];
 
   return (
-    <div className="px-6 py-6 space-y-6">
+    <div className="px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto space-y-6">
       <header className="animate-fade-up">
         <span className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary mb-2">
           Portal do Cliente
@@ -213,7 +213,7 @@ function ClienteDashboard() {
                   "flex items-center gap-2 rounded-xl border px-3 py-2 text-sm transition-colors",
                   step.done
                     ? "border-emerald-100 bg-emerald-50/80 text-emerald-800"
-                    : "border-border bg-card text-foreground hover:bg-secondary/40",
+                    : "border-border/50 bg-card text-foreground hover:bg-secondary/40",
                 )}
               >
                 <CheckCircle2 className={cn("h-4 w-4", step.done ? "text-emerald-600" : "text-muted-foreground/40")} />
@@ -230,7 +230,7 @@ function ClienteDashboard() {
           <Link
             key={card.rank}
             to={card.to}
-            className="card-lift animate-fade-up rounded-2xl border border-border bg-card px-5 pt-5 pb-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)] flex flex-col"
+            className="card-lift animate-fade-up rounded-2xl border border-border/50 bg-card px-5 pt-5 pb-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)] flex flex-col"
             style={{ animationDelay: `${card.delay}ms` }}
           >
             <span className="text-[9px] font-black tracking-[0.16em] text-muted-foreground/40 mb-4">{card.rank}</span>
@@ -251,7 +251,7 @@ function ClienteDashboard() {
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {/* Aprovações pendentes */}
-        <div className="animate-fade-up delay-225 card-lift rounded-2xl border border-border bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
+        <div className="animate-fade-up delay-225 card-lift rounded-2xl border border-border/50 bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
           <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Aprovações pendentes</p>
@@ -303,7 +303,7 @@ function ClienteDashboard() {
         </div>
 
         {/* Conversas recentes */}
-        <div className="animate-fade-up delay-300 card-lift rounded-2xl border border-border bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
+        <div className="animate-fade-up delay-300 card-lift rounded-2xl border border-border/50 bg-card p-5 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
           <div className="mb-4 flex items-center justify-between">
             <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Conversas recentes</p>
             <Link to="/cliente/atendimento" className="flex items-center gap-1 text-xs text-primary hover:underline">
@@ -318,7 +318,7 @@ function ClienteDashboard() {
               <p className="text-sm text-muted-foreground">Nenhuma conversa recente</p>
             </div>
           ) : (
-            <div className="divide-y divide-border rounded-xl border border-border overflow-hidden">
+            <div className="divide-y divide-border/30 rounded-2xl border border-border/50 overflow-hidden">
               {conversas!.map((c, i) => (
                 <Link
                   key={c.id}
@@ -366,7 +366,7 @@ function ClienteDashboard() {
             {proximos!.map((ag, i) => (
               <div
                 key={ag.id}
-                className="card-lift animate-fade-up rounded-2xl border border-border bg-card p-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
+                className="card-lift animate-fade-up rounded-2xl border border-border/50 bg-card p-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)]"
                 style={{ animationDelay: `${420 + i * 60}ms` }}
               >
                 <div className="flex items-start gap-3">

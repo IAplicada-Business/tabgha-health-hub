@@ -74,7 +74,7 @@ function SectionHeader({ children, className }: { children: React.ReactNode; cla
   return (
     <p
       className={cn(
-        "mt-6 mb-3 text-[10.5px] font-bold uppercase tracking-widest text-muted-foreground border-b border-border pb-1.5",
+        "mt-6 mb-3 text-[10.5px] font-bold uppercase tracking-widest text-muted-foreground border-b border-border/50 pb-1.5",
         className,
       )}
     >
@@ -187,7 +187,7 @@ function TabCadastro({ cliente }: { cliente: Cliente }) {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_268px]">
         {/* ── Campos em card estilizado ── */}
         <form onSubmit={form.handleSubmit(() => save.mutate())}>
-          <div className="rounded-2xl border border-border bg-card shadow-[0_1px_3px_rgba(15,27,53,0.04)] overflow-hidden">
+          <div className="rounded-2xl border border-border/50 bg-card shadow-[0_1px_3px_rgba(15,27,53,0.04)] overflow-hidden">
             {/* Identificação */}
             <div className="px-5 pt-5 pb-4">
               <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
@@ -214,7 +214,7 @@ function TabCadastro({ cliente }: { cliente: Cliente }) {
             </div>
 
             {/* Dados fiscais */}
-            <div className="border-t border-border px-5 py-4">
+            <div className="border-t border-border/50 px-5 py-4">
               <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
                 Dados fiscais
               </p>
@@ -229,7 +229,7 @@ function TabCadastro({ cliente }: { cliente: Cliente }) {
             </div>
 
             {/* Status + ação */}
-            <div className="border-t border-border px-5 py-4 flex items-end gap-4">
+            <div className="border-t border-border/50 px-5 py-4 flex items-end gap-4">
               <div className="w-48">
                 <Field label="Status">
                   <Select
@@ -263,7 +263,7 @@ function TabCadastro({ cliente }: { cliente: Cliente }) {
 
         {/* ── Sidebar de resumo ── */}
         <div className="space-y-4 lg:sticky lg:top-6 lg:self-start">
-          <div className="rounded-2xl border border-border bg-card p-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
+          <div className="rounded-2xl border border-border/50 bg-card p-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
             <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
               Resumo da conta
             </p>
@@ -300,7 +300,7 @@ function TabCadastro({ cliente }: { cliente: Cliente }) {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border bg-card p-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
+          <div className="rounded-2xl border border-border/50 bg-card p-4 shadow-[0_1px_3px_rgba(15,27,53,0.04)]">
             <p className="mb-3 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
               Informações
             </p>
@@ -331,7 +331,7 @@ function TabCadastro({ cliente }: { cliente: Cliente }) {
       </div>
 
       {/* ── Diagnóstico colapsável ── */}
-      <div className="rounded-2xl border border-border bg-card shadow-[0_1px_3px_rgba(15,27,53,0.04)] overflow-hidden">
+      <div className="rounded-2xl border border-border/50 bg-card shadow-[0_1px_3px_rgba(15,27,53,0.04)] overflow-hidden">
         <button
           type="button"
           onClick={() => setDiagOpen((v) => !v)}
@@ -363,7 +363,7 @@ function TabCadastro({ cliente }: { cliente: Cliente }) {
             )}
           />
         </button>
-        <div className={cn("border-t border-border px-5", diagOpen ? "block" : "hidden")}>
+        <div className={cn("border-t border-border/50 px-5", diagOpen ? "block" : "hidden")}>
           <TabDiagnostico cliente={cliente} />
         </div>
       </div>
@@ -765,7 +765,7 @@ function TabDiagnostico({ cliente }: { cliente: Cliente }) {
               <FileText className="h-3.5 w-3.5 text-primary" />
               Transcrição ou texto
             </Label>
-            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-border bg-card px-2.5 py-1 text-[11px] font-semibold text-muted-foreground hover:bg-secondary/50">
+            <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-border/50 bg-card px-2.5 py-1 text-[11px] font-semibold text-muted-foreground hover:bg-secondary/50">
               <Upload className="h-3.5 w-3.5" />
               Anexar arquivo
               <input
@@ -820,7 +820,7 @@ function TabDiagnostico({ cliente }: { cliente: Cliente }) {
 
       {filled ? (
         <div className="space-y-4">
-          <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
+          <div className="rounded-2xl border border-border/50 bg-card p-5">
             <div className="mb-3 flex items-center justify-between gap-2">
               <p className="text-[10.5px] font-bold uppercase tracking-widest text-sky-700">
                 Visão do cliente (publicada)
@@ -853,7 +853,7 @@ function TabDiagnostico({ cliente }: { cliente: Cliente }) {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-amber-200/80 bg-amber-50/40 shadow-sm">
+          <div className="overflow-hidden rounded-2xl border border-amber-200/80 bg-amber-50/40">
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-amber-200/70 px-5 py-3">
               <div>
                 <p className="text-[10.5px] font-bold uppercase tracking-widest text-amber-800">
@@ -938,7 +938,7 @@ function TabDiagnostico({ cliente }: { cliente: Cliente }) {
           </div>
         </div>
       ) : (
-        <p className="rounded-xl border border-dashed border-border px-4 py-8 text-center text-sm text-muted-foreground">
+        <p className="rounded-2xl border border-dashed border-border/50 px-4 py-8 text-center text-sm text-muted-foreground">
           Ainda sem diagnóstico publicado. Envie a fonte acima para gerar.
         </p>
       )}
@@ -1036,7 +1036,7 @@ function TabLeads({ clienteId }: { clienteId: string }) {
             {funnelStats.map(({ s, label, count, color }) => (
               <div
                 key={s}
-                className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-1.5 shadow-[0_1px_2px_rgba(15,27,53,0.04)]"
+                className="flex items-center gap-2 rounded-lg border border-border/50 bg-card px-3 py-1.5 shadow-[0_1px_2px_rgba(15,27,53,0.04)]"
               >
                 <span className={cn("rounded-full px-2 py-0.5 text-[10px] font-semibold", color)}>
                   {label}
@@ -1059,7 +1059,7 @@ function TabLeads({ clienteId }: { clienteId: string }) {
           />
         </div>
       ) : (
-        <div className="overflow-hidden rounded-xl border border-border">
+        <div className="overflow-hidden rounded-2xl border border-border/50">
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-secondary/60 text-[10.5px] uppercase tracking-wide text-muted-foreground">
@@ -1070,7 +1070,7 @@ function TabLeads({ clienteId }: { clienteId: string }) {
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-border">
+            <tbody className="divide-y divide-border/30">
               {leads.map((l) => (
                 <tr
                   key={l.id}
@@ -1193,7 +1193,7 @@ function TabConteudo({ clienteId }: { clienteId: string }) {
             {pipelineStats.map(({ s, label, count, color }) => (
               <div
                 key={s}
-                className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-1.5 shadow-[0_1px_2px_rgba(15,27,53,0.04)]"
+                className="flex items-center gap-2 rounded-lg border border-border/50 bg-card px-3 py-1.5 shadow-[0_1px_2px_rgba(15,27,53,0.04)]"
               >
                 <span className={cn("rounded-full px-2 py-0.5 text-[10px] font-semibold", color)}>
                   {label}
@@ -1204,7 +1204,7 @@ function TabConteudo({ clienteId }: { clienteId: string }) {
           </div>
         )}
       </div>
-      <div className="rounded-xl border border-border overflow-hidden">
+      <div className="rounded-2xl border border-border/50 overflow-hidden">
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-secondary/60 text-[10.5px] uppercase tracking-wide text-muted-foreground">
@@ -1215,7 +1215,7 @@ function TabConteudo({ clienteId }: { clienteId: string }) {
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-border">
+          <tbody className="divide-y divide-border/30">
             {conteudos.map((c) => (
               <tr key={c.id} className="hover:bg-secondary/30 transition-colors">
                 <td className="px-4 py-2.5 font-medium max-w-[260px] truncate">
@@ -1524,7 +1524,7 @@ function TabConexoes({ cliente }: { cliente: Cliente }) {
             key={s.label}
             className={cn(
               "rounded-xl border px-4 py-3",
-              s.ok ? "border-emerald-200 bg-emerald-50/70" : "border-border bg-card",
+              s.ok ? "border-emerald-200 bg-emerald-50/70" : "border-border/50 bg-card",
             )}
           >
             <p className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
@@ -1583,7 +1583,7 @@ function TabConexoes({ cliente }: { cliente: Cliente }) {
           },
           { label: "Com bot ativo", value: String(ops?.withBot ?? "—") },
         ].map((kpi) => (
-          <div key={kpi.label} className="rounded-xl border border-border bg-card px-3 py-3">
+          <div key={kpi.label} className="rounded-xl border border-border/50 bg-card px-3 py-3">
             <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
               {kpi.label}
             </p>
@@ -1594,7 +1594,7 @@ function TabConexoes({ cliente }: { cliente: Cliente }) {
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div className="space-y-4">
-          <div className="space-y-3 rounded-2xl border border-border bg-card p-5">
+          <div className="space-y-3 rounded-2xl border border-border/50 bg-card p-5">
             <div>
               <p className="text-[10.5px] font-bold uppercase tracking-widest text-muted-foreground">
                 Credenciais Z-API (só Tabgha)
@@ -1631,7 +1631,7 @@ function TabConexoes({ cliente }: { cliente: Cliente }) {
                 autoComplete="off"
               />
             </div>
-            <div className="rounded-lg border border-border bg-secondary/40 px-3 py-2">
+            <div className="rounded-lg border border-border/50 bg-secondary/40 px-3 py-2">
               <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
                 Webhook Receive (Z-API)
               </p>
@@ -1664,14 +1664,14 @@ function TabConexoes({ cliente }: { cliente: Cliente }) {
           <WhatsappConnectCard clienteId={cliente.id} />
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-border bg-card">
+        <div className="overflow-hidden rounded-2xl border border-border/50 bg-card">
           <div className="border-b border-sky-100 bg-sky-50/60 px-5 py-3">
             <p className="text-[10.5px] font-bold uppercase tracking-widest text-sky-700">
               Pietro · o que ele fala e como
             </p>
           </div>
           <div className="space-y-3 p-5">
-            <div className="flex items-center justify-between rounded-xl border border-border bg-secondary/30 px-3 py-2.5">
+            <div className="flex items-center justify-between rounded-xl border border-border/50 bg-secondary/30 px-3 py-2.5">
               <div>
                 <p className="text-sm font-medium">Agente ativo</p>
                 <p className="text-xs text-muted-foreground">
@@ -1702,7 +1702,7 @@ function TabConexoes({ cliente }: { cliente: Cliente }) {
               </div>
             </div>
 
-            <div className="rounded-lg border border-border bg-secondary/20 px-3 py-2 text-xs text-muted-foreground">
+            <div className="rounded-lg border border-border/50 bg-secondary/20 px-3 py-2 text-xs text-muted-foreground">
               <p className="font-medium text-foreground">Como as mensagens nascem</p>
               <ul className="mt-1 list-disc space-y-1 pl-4">
                 <li>Não é template fixo: o Pietro gera 1–3 frases em português, no tom salvo.</li>
@@ -1750,7 +1750,7 @@ function TabConexoes({ cliente }: { cliente: Cliente }) {
       </div>
 
       <Collapsible open={jsonOpen} onOpenChange={setJsonOpen}>
-        <div className="rounded-2xl border border-border bg-card">
+        <div className="rounded-2xl border border-border/50 bg-card">
           <CollapsibleTrigger asChild>
             <button
               type="button"
@@ -1773,7 +1773,7 @@ function TabConexoes({ cliente }: { cliente: Cliente }) {
             </button>
           </CollapsibleTrigger>
           <CollapsibleContent>
-            <div className="space-y-3 border-t border-border px-5 py-4">
+            <div className="space-y-3 border-t border-border/50 px-5 py-4">
               <Textarea
                 className="resize-none font-mono text-xs"
                 rows={8}
@@ -1849,12 +1849,12 @@ function ClienteFichaPage() {
   };
 
   return (
-    <div className="px-6 py-6">
+    <div className="px-4 py-6 sm:px-6 lg:px-8 max-w-[1400px] mx-auto">
       {/* Page header */}
       <div className="mb-6 flex items-center gap-4">
         <Link
           to="/admin/clientes"
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-border/50 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
         </Link>
@@ -1908,7 +1908,7 @@ function ClienteFichaPage() {
       </div>
 
       <Tabs defaultValue="cadastro">
-        <TabsList className="w-full justify-start border-b border-border rounded-none bg-transparent h-auto p-0 gap-0">
+        <TabsList className="w-full justify-start border-b border-border/50 rounded-none bg-transparent h-auto p-0 gap-0">
           {["cadastro", "leads", "conteudo", "conexoes"].map((tab) => (
             <TabsTrigger
               key={tab}

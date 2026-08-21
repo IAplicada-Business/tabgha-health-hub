@@ -214,7 +214,7 @@ export function LeadDetailDialog({ lead, onClose }: Props) {
           </DialogTitle>
         </DialogHeader>
 
-        <div className="flex flex-wrap gap-2 border-b border-border pb-2">
+        <div className="flex flex-wrap gap-2 border-b border-border/50 pb-2">
           {(
             [
               ["dados", "Dados"],
@@ -433,7 +433,7 @@ export function LeadDetailDialog({ lead, onClose }: Props) {
               </div>
             ) : (
               <>
-                <div className="rounded-xl border border-sky-200 bg-sky-50/70 px-4 py-3">
+                <div className="rounded-2xl border border-sky-200 bg-sky-50/70 px-4 py-3">
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-sky-700/80">
                     Score do bot
                   </p>
@@ -454,7 +454,7 @@ export function LeadDetailDialog({ lead, onClose }: Props) {
                 </div>
 
                 {notes && Object.keys(notes).length > 0 ? (
-                  <div className="space-y-2 rounded-xl border border-border bg-card px-4 py-3">
+                  <div className="space-y-2 rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm px-4 py-3">
                     <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
                       Notas da evolução
                     </p>
@@ -515,7 +515,7 @@ export function LeadDetailDialog({ lead, onClose }: Props) {
                     "rounded-xl px-3 py-2 text-sm",
                     msg.direction === "outbound"
                       ? "ml-8 bg-emerald-50 text-emerald-900"
-                      : "mr-8 border border-border bg-card",
+                      : "mr-8 border border-border/50 bg-card",
                   )}
                 >
                   <p className="whitespace-pre-wrap">{msg.body}</p>
